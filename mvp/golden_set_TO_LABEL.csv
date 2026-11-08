@@ -1,0 +1,33 @@
+﻿id,text,source,my_draft_guess,YOUR_LABEL,YOUR_NOTE,why_this_row_is_tricky
+g01,My installment failed and the app said pending,interview P7,pending_processing,,,flag: failed_low_balance vs pending_processing
+g02,I skipped a few months of payments after a failed debit occurred and thought I will come back to it later on,interview P13,failed_low_balance,,,flag: generic failed debit; could be wants_break
+g03,Money left my bank but did not show in the app,interview P2,debited_not_reflected,,,
+g04,Few times I overlooked my acct balance and due to fund shortage investment was paused and bank charged me fine,interview P11,bank_charge,,,flag: bank_charge vs failed_low_balance
+g05,can you suggest a sip that will give me good return,interview P4,advice_request,,,must decline
+g06,Suggest some good funds / segments that are into futuristic growth engines in india,interview P11,advice_request,,,must decline
+g07,Future trends,interview P12,advice_request,,,must decline; very short
+g08,I would like better assistance in picking SIPs early ... insights on market trends and recc moves to make,interview P13,advice_request,,,must decline
+g09,what is returns after a specific year,interview P14,returns_question,,,must decline
+g10,"Show me how much I would have invested if I maintain this amount for 10, 20, 30 years",interview P5,returns_question,,,"flag: 'invested' total is arithmetic, not a return; still routed to SIP calculator"
+g11,auto payment fails in mutual fund sip and there is no retry done by the app. If i don't open the app and do payment of sip manually the payment does not happen and remains pending.,playstore_8a0ba7c0f25e,failed_autopay_issue,,,flag: failed_autopay_issue vs pending_processing
+g12,Due to(Sunday) non working day my SIP not deducted from my account. So bank taken charge 295/- rupees . (Fi failure charge).,playstore_37357623b28d,bank_charge,,,
+g13,Coin show your payment is failed but my money is debited 12100 .what should I do now. Help me plz,playstore_c52780f5bd6e,debited_not_reflected,,,competitor app named in input
+g14,My money was deducted from my bank for my sip but it was not reflected in there account.,playstore_c4b817b75bf9,debited_not_reflected,,,
+g15,"I have sufficient balance in my bank account for SIP. But this application is very bad. The auto-debit did not happen from my account, and now ACH return charges have been applied by my bank",playstore_38db8562fe1a,bank_charge,,,flag: bank_charge vs failed_autopay_issue
+g16,UPI mandates are not working. Orders are under processing. SIP is not getting deducted.,playstore_c094698a0bf2,failed_autopay_issue,,,flag: vs pending_processing
+g17,"E mandate not working properly Even after the due date , money didn't got deducted.",playstore_21bb33ae88a9,failed_autopay_issue,,,
+g18,mandate nhi aate time pr.,playstore_b3dc0f3f0776,failed_autopay_issue,,,"Hinglish, very short"
+g19,kya matlab autopay ka jab khud hi pay krna pdta hai,playstore_7a8df7eb9f68,failed_autopay_issue,,,Hinglish; flag: could be out_of_scope (complaint)
+g20,Abhi jo Update aaya hai kuch samajh nahi aa raha SIP payment nahi ho pa raha hai,playstore_89747a0f3dac,failed_low_balance,,,"Hinglish; generic failure, cause unknown; flag"
+g21,SIPs missed many times even with having the required balance before the due date.,playstore_659f217df885,failed_autopay_issue,,,flag: balance was there so likely mandate; vs failed_low_balance
+g22,even after paying it is still there in the queue of pending SIP payment,playstore_3fa49f13b810,pending_processing,,,
+g23,the amount has been debited from bank but is showing transaction failed in the pending paymets.,playstore_29c253a3cdd3,debited_not_reflected,,,messy spelling
+g24,Initiated a nach for my MF on wrong day causing failure and bank deducted fine.,playstore_d831e7eece4f,bank_charge,,,
+g25,No pause option for SIP only delete,playstore_4ab2f58be21f,wants_break,,,
+g26,I want stop my Elss sip because there no option to reduce amount so can I stop current and need to start new with lesser amount?,youtube_a2f6b94acd9d,wants_break,,,flag: wants_break (reduce) vs considering_stop
+g27,"I am unable to close or stop sip.i can not talk to executive for resolution.close all 3 sip at your end today,i am frustrated.",playstore_ce6f1ec680fc,considering_stop,,,"Hinglish-adjacent, angry"
+g28,agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi,youtube_d8a26db64fc8,considering_stop,,,"Hinglish, typos"
+g29,Agar main 15 ya 20 saal ke baad sip thod de to kya hoga? usme return kaise calculate hoga.Same percentage milega?,youtube_ce9e9b91a44b,returns_question,,,Hinglish; flag: also mentions stopping
+g30,How do I change my profile photo?,synthetic off-topic,out_of_scope,,,
+g31,what's the weather in Bangalore tomorrow,synthetic off-topic,out_of_scope,,,
+g32,hi,synthetic off-topic,out_of_scope,,,very short
