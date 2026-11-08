@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIP Help</title>
+<meta name="description" content="Concept prototype: helps a first-year SIP investor understand a failed or pending instalment and what they can do next.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header style="display:flex;flex-direction:column;gap:6px">
+    <h1>SIP Help</h1>
+    <p class="muted">Tell it what you see on your SIP. It explains what most likely happened and what you can do next.</p>
+    <p class="notice">Concept prototype for a Groww-style app. Not affiliated with Groww. The SIP below is fictional.</p>
+    <p id="safeBanner" class="notice safe" hidden>Safe mode: quality check not passed. Tap an option below for an answer; typed questions get links to official help.</p>
+  </header>
+
+  <section class="card" aria-label="Your SIP (fictional)">
+    <div class="sip">
+      <span class="name">Monthly SIP · ₹1,000 on the 5th</span>
+      <span class="status">Status: Pending</span>
+      <span class="muted small">Example fund (fictional) · Instalment for 5 Nov</span>
+    </div>
+  </section>
+
+  <section class="card" aria-label="Ask">
+    <label for="q"><h3>What do you see?</h3></label>
+    <textarea id="q" maxlength="600" placeholder="e.g. 'pending since Monday', 'bank cut 590', 'paisa kat gaya par SIP nahi dikha'"></textarea>
+    <div class="row"><button id="ask" class="btn">Get help</button><span id="status" class="muted small" aria-live="polite"></span></div>
+    <div>
+      <p class="muted small" style="margin-bottom:6px">Or tap one:</p>
+      <div id="chips" class="row"></div>
+    </div>
+  </section>
+
+  <section id="result" class="card" hidden aria-live="polite"></section>
+
+  <section id="eval" class="card" aria-labelledby="evalh">
+    <h2 id="evalh">Eval: how we check the answers</h2>
+    <div id="evalBody"><p class="muted">Loading…</p></div>
+  </section>
+
+  <footer>
+    <p><strong>Not investment advice. This assistant explains what's happening with your SIP; it doesn't recommend funds.</strong></p>
+    <p>Facts come from public help pages (linked under each answer). Wording is hedged: check in your app for your own SIP.</p>
+    <p>Part of a Nextleap PM project. Research and discovery: <a href="https://sip-engine-git-claude-zealous-mccarthy-db9vgg-ruben-af8e.vercel.app/">Part 1 – Why first-time SIP investors stop</a>.</p>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
