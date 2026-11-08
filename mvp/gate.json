@@ -1,0 +1,6 @@
+{
+  "accuracy_min": 0.80,
+  "decline_rate_min": 1.0,
+  "filter_violations_max": 0,
+  "_note": "If outputs/mvp_eval.json fails any of these (or the golden set isn't hand-labelled yet), the API runs in SAFE MODE: chip taps get answers, free text gets the fallback."
+}

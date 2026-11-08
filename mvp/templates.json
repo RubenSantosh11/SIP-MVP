@@ -1,0 +1,285 @@
+{
+  "_note": "Reviewed answer templates. {fact:ID} inserts the fact text from facts.json, {n:ID} its number. The model never writes answer text. DRAFT wording: PM to review anything about money, deadlines or cancellation.",
+  "labels": {
+    "failed_low_balance": "Failed – low balance",
+    "failed_autopay_issue": "Failed – AutoPay issue",
+    "pending_processing": "Pending / processing",
+    "debited_not_reflected": "Debited but not showing",
+    "bank_charge": "Bank charge / fine",
+    "wants_break": "Wants a break (pause / skip / change)",
+    "considering_stop": "Thinking of stopping",
+    "advice_request": "Asking for fund advice",
+    "returns_question": "Asking about returns",
+    "out_of_scope": "Not about a SIP payment"
+  },
+  "common_next": "{fact:one_miss_not_cancel} {fact:three_in_row}",
+  "answers": {
+    "failed_low_balance": {
+      "kind": "answer",
+      "happened": "Most likely there wasn't enough money in your bank account when the SIP amount was collected, so the instalment didn't go through. This is the most common reason and it's easy to recover from.",
+      "actions": [
+        {
+          "do": "Pay this month's instalment with Pay Now.",
+          "where": "Mutual fund dashboard → 'Pay Now' on the SIP. {fact:pay_now_window}"
+        },
+        {
+          "do": "If Pay Now is no longer showing, you can still pay for the month.",
+          "where": "{fact:pay_one_time_route} {fact:nav_on_completion} {fact:some_funds_no_one_time}"
+        },
+        {
+          "do": "For next month, keep the amount in your bank a few days early.",
+          "where": "{fact:balance_lead_days}"
+        },
+        {
+          "do": "If the date doesn't suit your salary date, skip, reduce or change the SIP date.",
+          "where": "My SIPs → choose the SIP → edit options (check in your app for what your SIP allows)."
+        },
+        {
+          "do": "Still unsure? Contact support.",
+          "where": "Profile → Help & Support in the app."
+        }
+      ],
+      "next": "{common_next}",
+      "facts": [
+        "pay_now_window",
+        "pay_one_time_route",
+        "nav_on_completion",
+        "some_funds_no_one_time",
+        "balance_lead_days",
+        "one_miss_not_cancel",
+        "three_in_row"
+      ],
+      "show_date_helper": true
+    },
+    "failed_autopay_issue": {
+      "kind": "answer",
+      "happened": "Most likely the AutoPay (bank mandate) behind your SIP isn't working yet: it may not be set up, not approved by your bank, expired, below the SIP amount, or linked to an old bank account. {fact:failure_reasons}",
+      "actions": [
+        {
+          "do": "Check the AutoPay status for this SIP.",
+          "where": "My SIPs → choose the SIP → AutoPay / Payment details. Set it up again or approve it in your bank or UPI app if it shows pending."
+        },
+        {
+          "do": "Pay this month's instalment yourself so the month isn't missed.",
+          "where": "{fact:pay_one_time_route} {fact:nav_on_completion} {fact:some_funds_no_one_time}"
+        },
+        {
+          "do": "If you changed banks, link the new account to AutoPay.",
+          "where": "Profile → Bank details / AutoPay in the app."
+        },
+        {
+          "do": "Still unsure? Contact support.",
+          "where": "Profile → Help & Support in the app."
+        }
+      ],
+      "next": "{common_next}",
+      "facts": [
+        "failure_reasons",
+        "pay_one_time_route",
+        "nav_on_completion",
+        "some_funds_no_one_time",
+        "one_miss_not_cancel",
+        "three_in_row"
+      ],
+      "show_date_helper": false
+    },
+    "pending_processing": {
+      "kind": "answer",
+      "happened": "'Pending' usually means the payment for this instalment hasn't been completed yet, often because the AutoPay debit didn't go through. {fact:pending_past_date_failed}",
+      "actions": [
+        {
+          "do": "Check whether a payment option is showing on the SIP.",
+          "where": "Mutual fund dashboard → the pending SIP. If 'Pay Now' shows, you can pay from there. {fact:pay_now_window}"
+        },
+        {
+          "do": "If the date shown has passed, pay the month yourself.",
+          "where": "{fact:pay_one_time_route} {fact:nav_on_completion}"
+        },
+        {
+          "do": "Check your bank SMS or statement to see if money actually left your account.",
+          "where": "If it did, see 'Money left my bank but doesn't show'."
+        },
+        {
+          "do": "Still unsure? Contact support.",
+          "where": "Profile → Help & Support in the app."
+        }
+      ],
+      "next": "{common_next}",
+      "facts": [
+        "pending_past_date_failed",
+        "pay_now_window",
+        "pay_one_time_route",
+        "nav_on_completion",
+        "one_miss_not_cancel",
+        "three_in_row"
+      ],
+      "show_date_helper": true
+    },
+    "debited_not_reflected": {
+      "kind": "answer",
+      "happened": "If money left your bank but the instalment doesn't show yet, it's usually still being processed, or the order didn't go through and the amount is on its way back to your bank. Either way, the money isn't lost.",
+      "actions": [
+        {
+          "do": "Check the order status for this instalment.",
+          "where": "My SIPs → choose the SIP → order / transaction history. Statuses can take a few working days to update."
+        },
+        {
+          "do": "Keep your bank SMS or statement entry (date and amount).",
+          "where": "Support will ask for it if the order doesn't show up."
+        },
+        {
+          "do": "Don't pay again for the same month until you know the status, so you aren't charged twice.",
+          "where": "Check the order status first."
+        },
+        {
+          "do": "If it still doesn't show after a few working days, contact support with the bank details.",
+          "where": "Profile → Help & Support in the app."
+        }
+      ],
+      "next": "Once the order is processed, units are added to your SIP; if it was rejected, the amount usually goes back to your bank. {fact:one_miss_not_cancel}",
+      "facts": [
+        "one_miss_not_cancel"
+      ],
+      "show_date_helper": false
+    },
+    "bank_charge": {
+      "kind": "answer",
+      "happened": "The fine is most likely a bounce fee from your bank because the SIP debit failed, usually for low balance. {fact:no_platform_charge} {fact:bank_bounce_fee}",
+      "actions": [
+        {
+          "do": "Ask your bank what the charge was for.",
+          "where": "Your bank's app, statement, or customer care. Only the bank can explain or reverse its own fee."
+        },
+        {
+          "do": "Pay this month's instalment if you still want to invest it.",
+          "where": "Pay Now on the mutual fund dashboard if it's still showing (usually for 2 working days after the failure). Otherwise: {fact:pay_one_time_route}"
+        },
+        {
+          "do": "To avoid another fee, keep the amount in your bank a few days early.",
+          "where": "{fact:balance_lead_days}"
+        },
+        {
+          "do": "If the date doesn't suit you, change the SIP date or amount, or skip a month.",
+          "where": "My SIPs → choose the SIP → edit options (check in your app for what your SIP allows)."
+        }
+      ],
+      "next": "{common_next}",
+      "facts": [
+        "no_platform_charge",
+        "bank_bounce_fee",
+        "pay_now_window",
+        "pay_one_time_route",
+        "balance_lead_days",
+        "one_miss_not_cancel",
+        "three_in_row",
+        "pay_now_window"
+      ],
+      "show_date_helper": true
+    },
+    "wants_break": {
+      "kind": "answer",
+      "happened": "You'd like to take a break or change your SIP. That's a normal choice, and you can usually do it without stopping the SIP.",
+      "actions": [
+        {
+          "do": "Skip or pause for a month or more.",
+          "where": "My SIPs → choose the SIP → look for Skip / Pause (check in your app for what your SIP allows)."
+        },
+        {
+          "do": "Reduce the amount.",
+          "where": "My SIPs → choose the SIP → Edit SIP → change amount."
+        },
+        {
+          "do": "Change the SIP date, e.g. to just after your salary date.",
+          "where": "My SIPs → choose the SIP → Edit SIP → change date."
+        },
+        {
+          "do": "Still unsure? Contact support.",
+          "where": "Profile → Help & Support in the app."
+        }
+      ],
+      "next": "A skip or pause you set up yourself is usually not treated as a failed instalment, but check in your app for how your SIP handles it. Your SIP carries on afterwards as set up.",
+      "facts": [],
+      "show_date_helper": false
+    },
+    "considering_stop": {
+      "kind": "answer",
+      "happened": "Whether to continue is your decision, and there's no right answer here. These are the options and what each one means, so you can choose.",
+      "actions": [
+        {
+          "do": "Pause / skip: no instalments for a while.",
+          "where": "Your SIP and the money already invested stay as they are, and the SIP carries on afterwards. My SIPs → choose the SIP."
+        },
+        {
+          "do": "Reduce: keep the SIP going with a smaller amount.",
+          "where": "My SIPs → choose the SIP → Edit SIP."
+        },
+        {
+          "do": "Change date: move the debit to a day that suits you.",
+          "where": "My SIPs → choose the SIP → Edit SIP."
+        },
+        {
+          "do": "Stop (cancel): no more instalments.",
+          "where": "Stopping a SIP doesn't sell what you've already invested; those units stay in your account until you choose to withdraw. My SIPs → choose the SIP → Cancel SIP."
+        }
+      ],
+      "next": "Whatever you choose, you can start a new SIP later. This assistant doesn't tell you which option to pick.",
+      "facts": [],
+      "show_date_helper": false
+    },
+    "advice_request": {
+      "kind": "decline",
+      "happened": "I can't recommend funds or predict returns. I can help with what's happening to your SIP and your options.",
+      "actions": [
+        {
+          "do": "If your SIP failed, is pending or was charged, tap one of the options below.",
+          "where": "Or describe what you see on the SIP."
+        },
+        {
+          "do": "For choosing investments, a SEBI-registered investment adviser can help.",
+          "where": "You can check an adviser's registration on the SEBI website."
+        }
+      ],
+      "next": "",
+      "facts": [],
+      "show_date_helper": false
+    },
+    "returns_question": {
+      "kind": "decline",
+      "happened": "I can't predict returns. Mutual fund returns vary with the market and aren't guaranteed, so no one can tell you exactly what you'll get.",
+      "actions": [
+        {
+          "do": "To see an illustration for a monthly amount over a number of years, use the SIP calculator.",
+          "where": "In the app: search 'SIP calculator'. It shows illustrations based on the rate you enter, not a promise."
+        },
+        {
+          "do": "To see how much you've put in so far and its current value, check your SIP.",
+          "where": "My SIPs → choose the SIP."
+        }
+      ],
+      "next": "",
+      "facts": [],
+      "show_date_helper": false
+    },
+    "fallback": {
+      "kind": "fallback",
+      "happened": "I'm not sure I understood. Here's where to get a reliable answer…",
+      "actions": [
+        {
+          "do": "Tap the option below that's closest to what you see.",
+          "where": "Or rephrase in a sentence, e.g. 'my SIP shows pending since Monday'."
+        },
+        {
+          "do": "Read the official help pages.",
+          "where": "Links below."
+        },
+        {
+          "do": "Contact support.",
+          "where": "Profile → Help & Support in the app."
+        }
+      ],
+      "next": "",
+      "facts": [],
+      "show_date_helper": false
+    }
+  }
+}

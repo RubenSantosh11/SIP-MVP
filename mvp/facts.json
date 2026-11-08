@@ -1,0 +1,70 @@
+{
+  "_note": "Verified facts the answers may use. Wording is hedged on purpose ('usually', 'check in your app'). Checked against the live help pages on 8 Nov 2026.",
+  "facts": {
+    "failure_reasons": {
+      "text": "Groww lists three usual reasons an instalment fails: AutoPay is not set up, there wasn't enough balance in the bank account, or the SIP is linked to an AutoPay that isn't approved yet.",
+      "source": "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
+    },
+    "balance_lead_days": {
+      "value": 4,
+      "text": "Keep enough balance in your bank account 4 days before the SIP date so AutoPay can go through.",
+      "source": "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
+    },
+    "pay_now_window": {
+      "value": 2,
+      "text": "If a SIP fails because of low balance, a 'Pay Now' option usually appears on the mutual fund dashboard for 2 working days.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/how-do-i-pay-for-a-missed-installment-3"
+    },
+    "pay_one_time_route": {
+      "text": "You can pay for the month yourself: My SIPs → choose the SIP → 'Pay one-time' → enter the SIP amount → complete the payment.",
+      "source": "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
+    },
+    "nav_on_completion": {
+      "text": "The NAV used is the one for when the payment completes, not the original SIP date.",
+      "source": "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
+    },
+    "some_funds_no_one_time": {
+      "text": "Some funds don't accept one-time investments, so the one-time option may not show for every SIP.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/how-do-i-pay-for-a-missed-installment-3"
+    },
+    "pending_past_date_failed": {
+      "text": "If a pending SIP isn't paid by the date shown on it, that instalment is treated as failed.",
+      "source": "https://groww.in/help/mutual-funds/mf-dashboard/what-happens-if-i-pay-after-date-shown-on-pending-sip--42"
+    },
+    "no_platform_charge": {
+      "text": "Groww doesn't charge anything for a failed SIP order.",
+      "source": "https://groww.in/help/mutual-funds/mf-autopay/what-are-ecs-charges--96"
+    },
+    "bank_bounce_fee": {
+      "text": "Your bank may charge a bounce (ECS/NACH rejection) fee when a debit fails for low balance. The amount varies by bank; your bank can tell you what it charged and why.",
+      "source": "https://groww.in/help/mutual-funds/mf-autopay/what-are-ecs-charges--96"
+    },
+    "one_miss_not_cancel": {
+      "text": "One failed instalment doesn't cancel your SIP. Your next instalment is set up as usual.",
+      "source": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"
+    },
+    "three_in_row": {
+      "value": 3,
+      "text": "Generally, 3 failed instalments in a row can lead to the SIP being cancelled. Check in your app for how your SIP is treated.",
+      "source": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"
+    }
+  },
+  "help_links": [
+    {
+      "label": "Why did my instalment fail? (Groww help)",
+      "url": "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
+    },
+    {
+      "label": "How do I pay a missed instalment? (Groww help)",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/how-do-i-pay-for-a-missed-installment-3"
+    },
+    {
+      "label": "Paying after the date on a pending SIP (Groww help)",
+      "url": "https://groww.in/help/mutual-funds/mf-dashboard/what-happens-if-i-pay-after-date-shown-on-pending-sip--42"
+    },
+    {
+      "label": "What are ECS / bounce charges? (Groww help)",
+      "url": "https://groww.in/help/mutual-funds/mf-autopay/what-are-ecs-charges--96"
+    }
+  ]
+}

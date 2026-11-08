@@ -1,0 +1,4 @@
+tests/
+*.md
+!README.md
+mvp/run_eval.py

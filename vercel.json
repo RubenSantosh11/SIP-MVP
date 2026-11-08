@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/help.py": {
+      "maxDuration": 30,
+      "includeFiles": "{sip_help/**,mvp/*.json,outputs/mvp_eval.json}"
+    }
+  }
+}
