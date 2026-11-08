@@ -1,7 +1,7 @@
-# Where AI earns its place in SIP Help
+# Where AI earns its place in SIP Back on Track
 
 ## The job
-A first-year investor's SIP instalment fails or sits in "pending", usually because of low balance on the debit date. The reason they see is generic, the 2-working-day Pay Now window passes, and one miss becomes a skipped month, then a lapse. SIP Help has to get them from "something's wrong" to the right next step quickly.
+A first-year investor's SIP instalment fails or sits in "pending", usually because of low balance on the debit date. The reason they see is generic, the 2-working-day Pay Now window passes, and one miss becomes a skipped month, then a lapse. SIP Back on Track has to get them from "something's wrong" to the right next step quickly.
 
 ## Why a status screen or FAQ isn't enough
 People don't describe the problem in the app's terms. From our research and reviews:

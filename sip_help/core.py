@@ -1,4 +1,4 @@
-"""SIP Help core: one code path for the API and the eval.
+"""SIP Back on Track core: one code path for the API and the eval.
 
 Step 1 (AI): Gemini Flash classifies the user's text -> {category, confidence, evidence_span}.
              The span must appear verbatim in the user's text (checked here, not trusted).

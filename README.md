@@ -1,4 +1,4 @@
-# SIP Help (Part 5 MVP)
+# SIP Back on Track (Part 5 MVP)
 
 Concept prototype for a Groww-style app. Not affiliated with Groww. **Not investment advice.**
 

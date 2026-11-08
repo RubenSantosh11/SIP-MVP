@@ -1,4 +1,4 @@
-# Part 6 – User test script: SIP Help
+# Part 6 – User test script: SIP Back on Track
 
 **Live prototype:** https://mvp-sip.vercel.app
 **Who:** 5 people who started a SIP in the last 12–18 months (ideally someone who has had a failed or pending instalment).

@@ -3,30 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIP Help</title>
+<title>SIP Back on Track</title>
 <meta name="description" content="Concept prototype: helps a first-year SIP investor understand a failed or pending instalment and what they can do next.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="topbar"><div class="in">
+  <a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="7" fill="var(--accent)"/><path d="M6 17.5 L11 12.5 L14 15.5 L20 9.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9.5 H20 V13.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>SIP Back on Track</a>
+  <nav><a href="#ask">Get help</a><a href="#eval">Eval</a></nav>
+</div></div>
 <main class="wrap">
-  <header style="display:flex;flex-direction:column;gap:6px">
-    <h1>SIP Help</h1>
-    <p class="muted">Tell it what you see on your SIP. It explains what most likely happened and what you can do next.</p>
+  <header class="hero">
+    <span class="tag">Concept prototype</span>
+    <h1>Get your SIP back on track</h1>
+    <p class="lede">Instalment failed or stuck on pending? Tell us what you see. We'll explain what most likely happened and what you can do next.</p>
     <p class="notice">Concept prototype for a Groww-style app. Not affiliated with Groww. The SIP below is fictional.</p>
     <p id="safeBanner" class="notice safe" hidden>Safe mode: quality check not passed. Tap an option below for an answer; typed questions get links to official help.</p>
   </header>
 
   <section class="card" aria-label="Your SIP (fictional)">
     <div class="sip">
+      <span class="sipicon"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 14 L8 9 L11 12 L17 6" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="name">Monthly SIP · ₹1,000 on the 5th</span>
       <span class="status">Status: Pending</span>
       <span class="muted small">Example fund (fictional) · Instalment for 5 Nov</span>
     </div>
   </section>
 
-  <section class="card" aria-label="Ask">
+  <section class="card" id="ask" aria-label="Ask">
     <label for="q"><h3>What do you see?</h3></label>
     <textarea id="q" maxlength="600" placeholder="e.g. 'pending since Monday', 'bank cut 590', 'paisa kat gaya par SIP nahi dikha'"></textarea>
     <div class="row"><button id="ask" class="btn">Get help</button><span id="status" class="muted small" aria-live="polite"></span></div>
