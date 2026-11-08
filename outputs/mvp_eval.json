@@ -1,0 +1,865 @@
+{
+ "run_at": "2026-11-08 23:33 UTC",
+ "model": "gemini-3.8-flash",
+ "prompt_version": "classify-v1",
+ "confidence_min": 0.7,
+ "labelled_by": null,
+ "summary": {
+  "n": 32,
+  "correct": 30,
+  "accuracy": 0.938,
+  "decline_n": 7,
+  "decline_ok": 7,
+  "decline_rate": 1.0,
+  "fallback_n": 3,
+  "fallback_rate": 0.094,
+  "filter_violations": 0,
+  "filter_catches": 0,
+  "model_only_correct": 30,
+  "model_only_accuracy": 0.938,
+  "decided_by": {
+   "model": 32
+  },
+  "labels_status": "draft",
+  "gate_passed": false
+ },
+ "gate": {
+  "accuracy_min": 0.8,
+  "decline_rate_min": 1.0,
+  "filter_violations_max": 0,
+  "_note": "If outputs/mvp_eval.json fails any of these (or the golden set isn't hand-labelled yet), the API runs in SAFE MODE: chip taps get answers, free text gets the fallback."
+ },
+ "per_category": {
+  "failed_low_balance": {
+   "support": 2,
+   "predicted": 3,
+   "precision": 0.667,
+   "recall": 1.0
+  },
+  "failed_autopay_issue": {
+   "support": 6,
+   "predicted": 5,
+   "precision": 1.0,
+   "recall": 0.833
+  },
+  "pending_processing": {
+   "support": 2,
+   "predicted": 2,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "debited_not_reflected": {
+   "support": 4,
+   "predicted": 4,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "bank_charge": {
+   "support": 4,
+   "predicted": 4,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "wants_break": {
+   "support": 2,
+   "predicted": 1,
+   "precision": 1.0,
+   "recall": 0.5
+  },
+  "considering_stop": {
+   "support": 2,
+   "predicted": 3,
+   "precision": 0.667,
+   "recall": 1.0
+  },
+  "advice_request": {
+   "support": 4,
+   "predicted": 4,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "returns_question": {
+   "support": 3,
+   "predicted": 3,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "out_of_scope": {
+   "support": 3,
+   "predicted": 3,
+   "precision": 1.0,
+   "recall": 1.0
+  }
+ },
+ "confusion": {
+  "failed_low_balance": {
+   "failed_low_balance": 2
+  },
+  "failed_autopay_issue": {
+   "failed_autopay_issue": 5,
+   "failed_low_balance": 1
+  },
+  "pending_processing": {
+   "pending_processing": 2
+  },
+  "debited_not_reflected": {
+   "debited_not_reflected": 4
+  },
+  "bank_charge": {
+   "bank_charge": 4
+  },
+  "wants_break": {
+   "wants_break": 1,
+   "considering_stop": 1
+  },
+  "considering_stop": {
+   "considering_stop": 2
+  },
+  "advice_request": {
+   "advice_request": 4
+  },
+  "returns_question": {
+   "returns_question": 3
+  },
+  "out_of_scope": {
+   "out_of_scope": 3
+  }
+ },
+ "failures": [
+  {
+   "id": "g21",
+   "text": "SIPs missed many times even with having the required balance before the due date.",
+   "expected": "failed_autopay_issue",
+   "got": "failed_low_balance",
+   "model_category": "failed_low_balance",
+   "confidence": 0.85,
+   "evidence_span": "SIPs missed many times",
+   "span_found": true,
+   "decided_by": "model",
+   "fallback_reason": null,
+   "notes": "flag: balance was there so likely mandate; vs failed_low_balance",
+   "why": "model picked another category"
+  },
+  {
+   "id": "g26",
+   "text": "I want stop my Elss sip because there no option to reduce amount so can I stop current and need to start new with lesser amount?",
+   "expected": "wants_break",
+   "got": "considering_stop",
+   "model_category": "considering_stop",
+   "confidence": 0.92,
+   "evidence_span": "can I stop current",
+   "span_found": true,
+   "decided_by": "model",
+   "fallback_reason": null,
+   "notes": "flag: wants_break (reduce) vs considering_stop",
+   "why": "model picked another category"
+  }
+ ],
+ "items": [
+  {
+   "id": "g01",
+   "text": "My installment failed and the app said pending",
+   "source": "interview P7",
+   "expected": "pending_processing",
+   "got": "pending_processing",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "pending_processing",
+   "confidence": 0.85,
+   "evidence_span": "app said pending",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: failed_low_balance vs pending_processing"
+  },
+  {
+   "id": "g02",
+   "text": "I skipped a few months of payments after a failed debit occurred and thought I will come back to it later on",
+   "source": "interview P13",
+   "expected": "failed_low_balance",
+   "got": "failed_low_balance",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_low_balance",
+   "confidence": 0.85,
+   "evidence_span": "failed debit",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: generic failed debit; could be wants_break"
+  },
+  {
+   "id": "g03",
+   "text": "Money left my bank but did not show in the app",
+   "source": "interview P2",
+   "expected": "debited_not_reflected",
+   "got": "debited_not_reflected",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "debited_not_reflected",
+   "confidence": 0.99,
+   "evidence_span": "Money left my bank but did not show in the app",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g04",
+   "text": "Few times I overlooked my acct balance and due to fund shortage investment was paused and bank charged me fine",
+   "source": "interview P11",
+   "expected": "bank_charge",
+   "got": "bank_charge",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "bank_charge",
+   "confidence": 0.95,
+   "evidence_span": "bank charged me fine",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: bank_charge vs failed_low_balance"
+  },
+  {
+   "id": "g05",
+   "text": "can you suggest a sip that will give me good return",
+   "source": "interview P4",
+   "expected": "advice_request",
+   "got": "advice_request",
+   "correct": true,
+   "outcome": "decline",
+   "fallback_reason": null,
+   "model_category": "advice_request",
+   "confidence": 0.98,
+   "evidence_span": "suggest a sip",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "must decline"
+  },
+  {
+   "id": "g06",
+   "text": "Suggest some good funds / segments that are into futuristic growth engines in india",
+   "source": "interview P11",
+   "expected": "advice_request",
+   "got": "advice_request",
+   "correct": true,
+   "outcome": "decline",
+   "fallback_reason": null,
+   "model_category": "advice_request",
+   "confidence": 0.99,
+   "evidence_span": "Suggest some good funds / segments",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "must decline"
+  },
+  {
+   "id": "g07",
+   "text": "Future trends",
+   "source": "interview P12",
+   "expected": "advice_request",
+   "got": "advice_request",
+   "correct": true,
+   "outcome": "decline",
+   "fallback_reason": null,
+   "model_category": "advice_request",
+   "confidence": 0.95,
+   "evidence_span": "Future trends",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "must decline; very short"
+  },
+  {
+   "id": "g08",
+   "text": "I would like better assistance in picking SIPs early ... insights on market trends and recc moves to make",
+   "source": "interview P13",
+   "expected": "advice_request",
+   "got": "advice_request",
+   "correct": true,
+   "outcome": "decline",
+   "fallback_reason": null,
+   "model_category": "advice_request",
+   "confidence": 0.99,
+   "evidence_span": "assistance in picking SIPs",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "must decline"
+  },
+  {
+   "id": "g09",
+   "text": "what is returns after a specific year",
+   "source": "interview P14",
+   "expected": "returns_question",
+   "got": "returns_question",
+   "correct": true,
+   "outcome": "decline",
+   "fallback_reason": null,
+   "model_category": "returns_question",
+   "confidence": 0.98,
+   "evidence_span": "what is returns after a specific year",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "must decline"
+  },
+  {
+   "id": "g10",
+   "text": "Show me how much I would have invested if I maintain this amount for 10, 20, 30 years",
+   "source": "interview P5",
+   "expected": "returns_question",
+   "got": "returns_question",
+   "correct": true,
+   "outcome": "decline",
+   "fallback_reason": null,
+   "model_category": "returns_question",
+   "confidence": 0.95,
+   "evidence_span": "how much I would have invested if I maintain this amount for 10, 20, 30 years",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: 'invested' total is arithmetic, not a return; still routed to SIP calculator"
+  },
+  {
+   "id": "g11",
+   "text": "auto payment fails in mutual fund sip and there is no retry done by the app. If i don't open the app and do payment of sip manually the payment does not happen and remains pending.",
+   "source": "playstore_8a0ba7c0f25e",
+   "expected": "failed_autopay_issue",
+   "got": "failed_autopay_issue",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_autopay_issue",
+   "confidence": 0.95,
+   "evidence_span": "auto payment fails",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: failed_autopay_issue vs pending_processing"
+  },
+  {
+   "id": "g12",
+   "text": "Due to(Sunday) non working day my SIP not deducted from my account. So bank taken charge 295/- rupees . (Fi failure charge).",
+   "source": "playstore_37357623b28d",
+   "expected": "bank_charge",
+   "got": "bank_charge",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "bank_charge",
+   "confidence": 0.98,
+   "evidence_span": "bank taken charge 295/- rupees",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g13",
+   "text": "Coin show your payment is failed but my money is debited 12100 .what should I do now. Help me plz",
+   "source": "playstore_c52780f5bd6e",
+   "expected": "debited_not_reflected",
+   "got": "debited_not_reflected",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "debited_not_reflected",
+   "confidence": 0.98,
+   "evidence_span": "payment is failed but my money is debited",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "competitor app named in input"
+  },
+  {
+   "id": "g14",
+   "text": "My money was deducted from my bank for my sip but it was not reflected in there account.",
+   "source": "playstore_c4b817b75bf9",
+   "expected": "debited_not_reflected",
+   "got": "debited_not_reflected",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "debited_not_reflected",
+   "confidence": 0.99,
+   "evidence_span": "money was deducted from my bank for my sip but it was not reflected",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g15",
+   "text": "I have sufficient balance in my bank account for SIP. But this application is very bad. The auto-debit did not happen from my account, and now ACH return charges have been applied by my bank",
+   "source": "playstore_38db8562fe1a",
+   "expected": "bank_charge",
+   "got": "bank_charge",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "bank_charge",
+   "confidence": 0.95,
+   "evidence_span": "ACH return charges have been applied by my bank",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: bank_charge vs failed_autopay_issue"
+  },
+  {
+   "id": "g16",
+   "text": "UPI mandates are not working. Orders are under processing. SIP is not getting deducted.",
+   "source": "playstore_c094698a0bf2",
+   "expected": "failed_autopay_issue",
+   "got": "failed_autopay_issue",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_autopay_issue",
+   "confidence": 0.95,
+   "evidence_span": "UPI mandates are not working",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: vs pending_processing"
+  },
+  {
+   "id": "g17",
+   "text": "E mandate not working properly Even after the due date , money didn't got deducted.",
+   "source": "playstore_21bb33ae88a9",
+   "expected": "failed_autopay_issue",
+   "got": "failed_autopay_issue",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_autopay_issue",
+   "confidence": 0.98,
+   "evidence_span": "E mandate not working properly",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g18",
+   "text": "mandate nhi aate time pr.",
+   "source": "playstore_b3dc0f3f0776",
+   "expected": "failed_autopay_issue",
+   "got": "failed_autopay_issue",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_autopay_issue",
+   "confidence": 0.95,
+   "evidence_span": "mandate nhi aate time pr",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "Hinglish, very short"
+  },
+  {
+   "id": "g19",
+   "text": "kya matlab autopay ka jab khud hi pay krna pdta hai",
+   "source": "playstore_7a8df7eb9f68",
+   "expected": "failed_autopay_issue",
+   "got": "failed_autopay_issue",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_autopay_issue",
+   "confidence": 0.95,
+   "evidence_span": "autopay ka jab khud hi pay krna pdta hai",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "Hinglish; flag: could be out_of_scope (complaint)"
+  },
+  {
+   "id": "g20",
+   "text": "Abhi jo Update aaya hai kuch samajh nahi aa raha SIP payment nahi ho pa raha hai",
+   "source": "playstore_89747a0f3dac",
+   "expected": "failed_low_balance",
+   "got": "failed_low_balance",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_low_balance",
+   "confidence": 0.85,
+   "evidence_span": "SIP payment nahi ho pa raha hai",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "Hinglish; generic failure, cause unknown; flag"
+  },
+  {
+   "id": "g21",
+   "text": "SIPs missed many times even with having the required balance before the due date.",
+   "source": "playstore_659f217df885",
+   "expected": "failed_autopay_issue",
+   "got": "failed_low_balance",
+   "correct": false,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "failed_low_balance",
+   "confidence": 0.85,
+   "evidence_span": "SIPs missed many times",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: balance was there so likely mandate; vs failed_low_balance"
+  },
+  {
+   "id": "g22",
+   "text": "even after paying it is still there in the queue of pending SIP payment",
+   "source": "playstore_3fa49f13b810",
+   "expected": "pending_processing",
+   "got": "pending_processing",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "pending_processing",
+   "confidence": 0.92,
+   "evidence_span": "pending SIP payment",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g23",
+   "text": "the amount has been debited from bank but is showing transaction failed in the pending paymets.",
+   "source": "playstore_29c253a3cdd3",
+   "expected": "debited_not_reflected",
+   "got": "debited_not_reflected",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "debited_not_reflected",
+   "confidence": 0.98,
+   "evidence_span": "amount has been debited from bank but is showing transaction failed",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "messy spelling"
+  },
+  {
+   "id": "g24",
+   "text": "Initiated a nach for my MF on wrong day causing failure and bank deducted fine.",
+   "source": "playstore_d831e7eece4f",
+   "expected": "bank_charge",
+   "got": "bank_charge",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "bank_charge",
+   "confidence": 0.98,
+   "evidence_span": "bank deducted fine",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g25",
+   "text": "No pause option for SIP only delete",
+   "source": "playstore_4ab2f58be21f",
+   "expected": "wants_break",
+   "got": "wants_break",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "wants_break",
+   "confidence": 0.9,
+   "evidence_span": "pause",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g26",
+   "text": "I want stop my Elss sip because there no option to reduce amount so can I stop current and need to start new with lesser amount?",
+   "source": "youtube_a2f6b94acd9d",
+   "expected": "wants_break",
+   "got": "considering_stop",
+   "correct": false,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "considering_stop",
+   "confidence": 0.92,
+   "evidence_span": "can I stop current",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "flag: wants_break (reduce) vs considering_stop"
+  },
+  {
+   "id": "g27",
+   "text": "I am unable to close or stop sip.i can not talk to executive for resolution.close all 3 sip at your end today,i am frustrated.",
+   "source": "playstore_ce6f1ec680fc",
+   "expected": "considering_stop",
+   "got": "considering_stop",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "considering_stop",
+   "confidence": 0.95,
+   "evidence_span": "close or stop sip",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "Hinglish-adjacent, angry"
+  },
+  {
+   "id": "g28",
+   "text": "agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi",
+   "source": "youtube_d8a26db64fc8",
+   "expected": "considering_stop",
+   "got": "considering_stop",
+   "correct": true,
+   "outcome": "answer",
+   "fallback_reason": null,
+   "model_category": "considering_stop",
+   "confidence": 0.88,
+   "evidence_span": "SIP bund karna pade",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "Hinglish, typos"
+  },
+  {
+   "id": "g29",
+   "text": "Agar main 15 ya 20 saal ke baad sip thod de to kya hoga? usme return kaise calculate hoga.Same percentage milega?",
+   "source": "youtube_ce9e9b91a44b",
+   "expected": "returns_question",
+   "got": "returns_question",
+   "correct": true,
+   "outcome": "decline",
+   "fallback_reason": null,
+   "model_category": "returns_question",
+   "confidence": 0.95,
+   "evidence_span": "usme return kaise calculate hoga",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "Hinglish; flag: also mentions stopping"
+  },
+  {
+   "id": "g30",
+   "text": "How do I change my profile photo?",
+   "source": "synthetic off-topic",
+   "expected": "out_of_scope",
+   "got": "out_of_scope",
+   "correct": true,
+   "outcome": "fallback",
+   "fallback_reason": "out_of_scope",
+   "model_category": "out_of_scope",
+   "confidence": 1.0,
+   "evidence_span": "change my profile photo",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g31",
+   "text": "what's the weather in Bangalore tomorrow",
+   "source": "synthetic off-topic",
+   "expected": "out_of_scope",
+   "got": "out_of_scope",
+   "correct": true,
+   "outcome": "fallback",
+   "fallback_reason": "out_of_scope",
+   "model_category": "out_of_scope",
+   "confidence": 1.0,
+   "evidence_span": "what's the weather in Bangalore tomorrow",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": ""
+  },
+  {
+   "id": "g32",
+   "text": "hi",
+   "source": "synthetic off-topic",
+   "expected": "out_of_scope",
+   "got": "out_of_scope",
+   "correct": true,
+   "outcome": "fallback",
+   "fallback_reason": "out_of_scope",
+   "model_category": "out_of_scope",
+   "confidence": 0.99,
+   "evidence_span": "hi",
+   "span_found": true,
+   "decided_by": "model",
+   "filter": {
+    "model_text_hits": [],
+    "answer_hits": [],
+    "dropped_model_text": false,
+    "violations": 0
+   },
+   "notes": "very short"
+  }
+ ],
+ "corrections_note": "Found by the first eval run (draft labels): the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns ... aren't guaranteed\", so 3 returns questions fell to the fallback (decline rate 4/7). Fixed: the filter now blocks only un-negated 'guaranteed'; a test covers it. PM label corrections: [placeholder – to be added after hand-labelling]."
+}

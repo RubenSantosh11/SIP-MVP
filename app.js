@@ -132,9 +132,9 @@ function renderEval() {
   h += `<div class="scroll"><table><thead><tr><th>Category</th><th class="n">Items</th><th class="n">Precision</th><th class="n">Recall</th></tr></thead><tbody>${
     Object.entries(pc).map(([k, v]) => `<tr><td>${esc(k)}</td><td class="n">${v.support}</td><td class="n">${pct(v.precision)}</td><td class="n">${pct(v.recall)}</td></tr>`).join("")}</tbody></table></div>`;
   const f = (EVAL.failures || []).slice(0, 3);
-  if (f.length) h += `<h3>Failure examples</h3><div class="scroll"><table><thead><tr><th>Message</th><th>Expected</th><th>Got</th><th>Why</th></tr></thead><tbody>${
-    f.map((x) => `<tr><td>${esc(x.text)}</td><td>${esc(x.expected)}</td><td>${esc(x.got)}</td><td>${esc(x.why)}</td></tr>`).join("")}</tbody></table></div>`;
-  h += `<h3>PM corrections</h3><p class="muted">${esc(EVAL.corrections_note || "Placeholder: corrections to labels, prompt or templates after reviewing failures will be listed here.")}</p>`;
+  if (f.length) h += `<h3>Failure examples</h3>${f.map((x) => `<div class="helper small"><p>“${esc(x.text)}”</p>
+    <p class="muted">Expected <span class="mono">${esc(x.expected)}</span> · got <span class="mono">${esc(x.got)}</span>${x.confidence != null ? ` (${Number(x.confidence).toFixed(2)})` : ""} · ${esc(x.why)}</p></div>`).join("")}`;
+  h += `<h3>PM corrections</h3><p class="muted small">${esc(EVAL.corrections_note || "Placeholder: corrections to labels, prompt or templates after reviewing failures will be listed here.")}</p>`;
   h += `<p class="muted small">How it works: the AI only picks a category and quotes the words it relied on; the quote must appear in your message. Answers come from reviewed templates and public help-page facts. If the latest eval misses the gate, the site switches to safe mode automatically. Files: <span class="mono">mvp/golden_set.csv</span>, <span class="mono">mvp/run_eval.py</span>, <span class="mono">outputs/mvp_eval.json</span>.</p>`;
   el.innerHTML = h;
 }

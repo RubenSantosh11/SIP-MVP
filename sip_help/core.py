@@ -51,7 +51,8 @@ AMC_FUND_STOCK = [
     r"flexi\s*-?\s*cap", r"index\s+fund", r"\belss\b",
     r"\breliance\b", r"\btcs\b", r"infosys", r"\badani\b", r"\bwipro\b", r"\bzomato\b", r"\bitc\b", r"\bbharti\b",
 ]
-PUSHY = [r"guaranteed", r"sure[\s-]*shot", r"\bhurry\b", r"last\s+chance", r"don'?t\s+miss", r"act\s+now",
+PUSHY = [r"(?<!not )(?<!n't )(?<!never )(?<!no )guaranteed",  # "aren't guaranteed" is the required disclaimer
+          r"sure[\s-]*shot", r"\bhurry\b", r"last\s+chance", r"don'?t\s+miss", r"act\s+now",
          r"best\s+fund", r"high\s+returns?"]
 FILTER_RE = re.compile("|".join(AMC_FUND_STOCK + PUSHY), re.I)
 

@@ -60,7 +60,7 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def do_GET(self):  # noqa: N802
-        self._send(200, {"ok": True, "model": core.MODEL, "gate": public_gate(), "chips": list(core.CHIPS),
+        self._send(200, {"ok": True, "model": core.MODEL, "key_configured": bool(__import__("os").environ.get("GEMINI_API_KEY")), "gate": public_gate(), "chips": list(core.CHIPS),
                          "disclaimer": core.DISCLAIMER})
 
     def do_POST(self):  # noqa: N802
