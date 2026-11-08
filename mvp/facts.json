@@ -47,6 +47,18 @@
       "value": 3,
       "text": "Generally, 3 failed instalments in a row can lead to the SIP being cancelled. Check in your app for how your SIP is treated.",
       "source": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"
+    },
+    "skip_one_at_a_time": {
+      "text": "If money is tight this month, you can skip the next instalment in advance: My SIPs → choose the SIP → Edit SIP → Skip instalment. Groww lets you skip one instalment at a time; after that date passes, you can skip the next one if you need to. Your SIP stays set up, and what you’ve already invested stays invested.",
+      "source": "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+      "sources": [
+        "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+        "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+      ]
+    },
+    "cancel_keeps_investment": {
+      "text": "Cancelling a SIP only stops future instalments. The money you’ve already invested stays invested until you choose to withdraw it.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
     }
   },
   "help_links": [

@@ -197,8 +197,10 @@
           "where": "Profile → Help & Support in the app."
         }
       ],
-      "next": "A skip or pause you set up yourself is usually not treated as a failed instalment, but check in your app for how your SIP handles it. Your SIP carries on afterwards as set up.",
-      "facts": [],
+      "next": "{fact:skip_one_at_a_time}",
+      "facts": [
+        "skip_one_at_a_time"
+      ],
       "show_date_helper": false
     },
     "considering_stop": {
@@ -219,11 +221,13 @@
         },
         {
           "do": "Stop (cancel): no more instalments.",
-          "where": "Stopping a SIP doesn't sell what you've already invested; those units stay in your account until you choose to withdraw. My SIPs → choose the SIP → Cancel SIP."
+          "where": "{fact:cancel_keeps_investment} My SIPs → choose the SIP → Cancel SIP."
         }
       ],
       "next": "Whatever you choose, you can start a new SIP later. This assistant doesn't tell you which option to pick.",
-      "facts": [],
+      "facts": [
+        "cancel_keeps_investment"
+      ],
       "show_date_helper": false
     },
     "advice_request": {

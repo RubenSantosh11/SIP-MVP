@@ -175,7 +175,7 @@ def _fill(s: str) -> str:
 def render(key: str) -> dict:
     t = TEMPLATES["answers"][key]
     facts = FACTS["facts"]
-    sources = sorted({facts[f]["source"] for f in t["facts"]})
+    sources = sorted({u for f in t["facts"] for u in facts[f].get("sources", [facts[f]["source"]])})
     out = {
         "kind": t["kind"],
         "happened": _fill(t["happened"]),
