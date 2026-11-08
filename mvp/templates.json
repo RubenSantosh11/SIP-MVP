@@ -31,8 +31,8 @@
           "where": "{fact:balance_lead_days}"
         },
         {
-          "do": "If the date doesn't suit your salary date, skip, reduce or change the SIP date.",
-          "where": "My SIPs → choose the SIP → edit options (check in your app for what your SIP allows)."
+          "do": "If the date doesn't suit your salary date, you can skip the next instalment, reduce the amount or change the date.",
+          "where": "{fact:edit_amount_date}"
         },
         {
           "do": "Still unsure? Contact support.",
@@ -47,9 +47,14 @@
         "some_funds_no_one_time",
         "balance_lead_days",
         "one_miss_not_cancel",
-        "three_in_row"
+        "three_in_row",
+        "edit_amount_date",
+        "edit_within_2_working_days"
       ],
-      "show_date_helper": true
+      "show_date_helper": true,
+      "good_to_know": [
+        "{fact:edit_within_2_working_days}"
+      ]
     },
     "failed_autopay_issue": {
       "kind": "answer",
@@ -81,7 +86,8 @@
         "one_miss_not_cancel",
         "three_in_row"
       ],
-      "show_date_helper": false
+      "show_date_helper": false,
+      "good_to_know": []
     },
     "pending_processing": {
       "kind": "answer",
@@ -113,7 +119,8 @@
         "one_miss_not_cancel",
         "three_in_row"
       ],
-      "show_date_helper": true
+      "show_date_helper": true,
+      "good_to_know": []
     },
     "debited_not_reflected": {
       "kind": "answer",
@@ -140,7 +147,8 @@
       "facts": [
         "one_miss_not_cancel"
       ],
-      "show_date_helper": false
+      "show_date_helper": false,
+      "good_to_know": []
     },
     "bank_charge": {
       "kind": "answer",
@@ -159,8 +167,8 @@
           "where": "{fact:balance_lead_days}"
         },
         {
-          "do": "If the date doesn't suit you, change the SIP date or amount, or skip a month.",
-          "where": "My SIPs → choose the SIP → edit options (check in your app for what your SIP allows)."
+          "do": "If the date doesn't suit you, you can change the SIP date or amount, or skip the next instalment.",
+          "where": "{fact:edit_amount_date}"
         }
       ],
       "next": "{common_next}",
@@ -172,25 +180,30 @@
         "balance_lead_days",
         "one_miss_not_cancel",
         "three_in_row",
-        "pay_now_window"
+        "pay_now_window",
+        "edit_amount_date",
+        "edit_within_2_working_days"
       ],
-      "show_date_helper": true
+      "show_date_helper": true,
+      "good_to_know": [
+        "{fact:edit_within_2_working_days}"
+      ]
     },
     "wants_break": {
       "kind": "answer",
       "happened": "You'd like to take a break or change your SIP. That's a normal choice, and you can usually do it without stopping the SIP.",
       "actions": [
         {
-          "do": "Skip or pause for a month or more.",
-          "where": "My SIPs → choose the SIP → look for Skip / Pause (check in your app for what your SIP allows)."
+          "do": "{fact:skip_next_short}",
+          "where": "{fact:skip_path}"
         },
         {
           "do": "Reduce the amount.",
-          "where": "My SIPs → choose the SIP → Edit SIP → change amount."
+          "where": "{fact:edit_amount_date}"
         },
         {
           "do": "Change the SIP date, e.g. to just after your salary date.",
-          "where": "My SIPs → choose the SIP → Edit SIP → change date."
+          "where": "{fact:edit_amount_date}"
         },
         {
           "do": "Still unsure? Contact support.",
@@ -199,36 +212,55 @@
       ],
       "next": "{fact:skip_one_at_a_time}",
       "facts": [
-        "skip_one_at_a_time"
+        "skip_one_at_a_time",
+        "skip_next_short",
+        "skip_path",
+        "edit_amount_date",
+        "edit_within_2_working_days",
+        "three_skips_cancel"
       ],
-      "show_date_helper": false
+      "show_date_helper": false,
+      "good_to_know": [
+        "{fact:edit_within_2_working_days}",
+        "{fact:three_skips_cancel}"
+      ]
     },
     "considering_stop": {
       "kind": "answer",
       "happened": "Whether to continue is your decision, and there's no right answer here. These are the options and what each one means, so you can choose.",
       "actions": [
         {
-          "do": "Pause / skip: no instalments for a while.",
-          "where": "Your SIP and the money already invested stay as they are, and the SIP carries on afterwards. My SIPs → choose the SIP."
+          "do": "{fact:skip_next_short}",
+          "where": "{fact:skip_path}"
         },
         {
           "do": "Reduce: keep the SIP going with a smaller amount.",
-          "where": "My SIPs → choose the SIP → Edit SIP."
+          "where": "{fact:edit_amount_date}"
         },
         {
           "do": "Change date: move the debit to a day that suits you.",
-          "where": "My SIPs → choose the SIP → Edit SIP."
+          "where": "{fact:edit_amount_date}"
         },
         {
           "do": "Stop (cancel): no more instalments.",
-          "where": "{fact:cancel_keeps_investment} My SIPs → choose the SIP → Cancel SIP."
+          "where": "{fact:cancel_keeps_investment} {fact:cancel_path}"
         }
       ],
       "next": "Whatever you choose, you can start a new SIP later. This assistant doesn't tell you which option to pick.",
       "facts": [
-        "cancel_keeps_investment"
+        "skip_next_short",
+        "skip_path",
+        "edit_amount_date",
+        "edit_within_2_working_days",
+        "cancel_keeps_investment",
+        "cancel_notes",
+        "cancel_path"
       ],
-      "show_date_helper": false
+      "show_date_helper": false,
+      "good_to_know": [
+        "{fact:edit_within_2_working_days}",
+        "{fact:cancel_notes}"
+      ]
     },
     "advice_request": {
       "kind": "decline",
@@ -245,7 +277,8 @@
       ],
       "next": "",
       "facts": [],
-      "show_date_helper": false
+      "show_date_helper": false,
+      "good_to_know": []
     },
     "returns_question": {
       "kind": "decline",
@@ -262,7 +295,8 @@
       ],
       "next": "",
       "facts": [],
-      "show_date_helper": false
+      "show_date_helper": false,
+      "good_to_know": []
     },
     "fallback": {
       "kind": "fallback",
@@ -283,7 +317,8 @@
       ],
       "next": "",
       "facts": [],
-      "show_date_helper": false
+      "show_date_helper": false,
+      "good_to_know": []
     }
   }
 }

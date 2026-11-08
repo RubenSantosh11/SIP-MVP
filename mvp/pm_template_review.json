@@ -1,0 +1,110 @@
+{
+  "title": "PM review of template facts",
+  "reviewed_by": "PM (Ruben)",
+  "reviewed_on": "2026-11-09",
+  "rows": [
+    {
+      "line": "A",
+      "answer": "My instalment failed – option 4",
+      "before": "skip, reduce or change the SIP date · My SIPs → edit options",
+      "after": "skip the next instalment, reduce the amount or change the date · Mutual Funds → SIPs → choose the SIP → Edit SIP (check in your app); change applies from the next SIP payment date. Good to know: 2-working-day note.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2",
+        "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
+      ]
+    },
+    {
+      "line": "B",
+      "answer": "Bank charged me a fine – option 4",
+      "before": "change the SIP date or amount, or skip a month · My SIPs → edit options",
+      "after": "Same path and facts as A. Good to know: 2-working-day note.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2",
+        "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
+      ]
+    },
+    {
+      "line": "C",
+      "answer": "Pause or skip – option 1",
+      "before": "Skip or pause for a month or more",
+      "after": "Skip the next instalment: Groww lets you skip one at a time. Your SIP stays set up, and what you’ve already invested stays invested. Good to know: 2-working-day note; skipping three in a row cancels the SIP.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+        "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63",
+        "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
+      ]
+    },
+    {
+      "line": "D",
+      "answer": "Pause or skip – option 2",
+      "before": "Reduce the amount · My SIPs → Edit SIP → change amount",
+      "after": "Mutual Funds → SIPs → choose the SIP → Edit SIP (check in your app); applies from the next SIP payment date.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+      ]
+    },
+    {
+      "line": "E",
+      "answer": "Pause or skip – option 3",
+      "before": "Change the SIP date · My SIPs → Edit SIP → change date",
+      "after": "Same path and fact as D.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+      ]
+    },
+    {
+      "line": "F",
+      "answer": "Should I stop – option 1",
+      "before": "Pause / skip: no instalments for a while",
+      "after": "Skip: same approved wording as C.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+        "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+      ]
+    },
+    {
+      "line": "G",
+      "answer": "Should I stop – option 2",
+      "before": "Reduce · My SIPs → Edit SIP",
+      "after": "Same path and fact as D.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+      ]
+    },
+    {
+      "line": "H",
+      "answer": "Should I stop – option 3",
+      "before": "Change date · My SIPs → Edit SIP",
+      "after": "Same path and fact as D. Good to know: 2-working-day note.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2",
+        "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
+      ]
+    },
+    {
+      "line": "I",
+      "answer": "Should I stop – option 4",
+      "before": "Stopping doesn't sell what you've invested · My SIPs → Cancel SIP",
+      "after": "Cancelling a SIP only stops future instalments; invested money stays invested until you withdraw · Mutual Funds → SIPs → choose the SIP → Cancel SIP. Good to know: can't be undone; can't cancel within 7 days of the next instalment; start a new SIP to invest again.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
+      ]
+    },
+    {
+      "line": "Skip (earlier)",
+      "answer": "Pause or skip – what happens next",
+      "before": "A skip … usually not treated as a failed instalment",
+      "after": "Removed. Replaced with the PM-approved skip fact (skip one at a time; SIP stays set up).",
+      "sources": [
+        "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+        "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+      ]
+    }
+  ]
+}

@@ -181,6 +181,7 @@ def render(key: str) -> dict:
         "happened": _fill(t["happened"]),
         "actions": [{"do": _fill(a["do"]), "where": _fill(a["where"])} for a in t["actions"]],
         "next": _fill(t["next"]),
+        "good_to_know": [_fill(g) for g in t.get("good_to_know", [])],
         "sources": sources,
         "show_date_helper": t["show_date_helper"],
     }
@@ -190,7 +191,7 @@ def render(key: str) -> dict:
 
 
 def _answer_text(ans: dict) -> str:
-    return " ".join([ans["happened"], ans["next"]] + [a["do"] + " " + a["where"] for a in ans["actions"]])
+    return " ".join([ans["happened"], ans["next"]] + ans.get("good_to_know", []) + [a["do"] + " " + a["where"] for a in ans["actions"]])
 
 
 # ---- Gate --------------------------------------------------------------------------------------

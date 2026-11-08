@@ -2,7 +2,7 @@ const CHIPS = ["My instalment failed", "It's been pending for days", "Money left
   "Bank charged me a fine", "I want to pause or skip a month", "Should I stop my SIP?"];
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-let GATE = null, EVAL = null;
+let GATE = null, EVAL = null, REVIEW = null;
 
 function renderChips(el) {
   el.innerHTML = CHIPS.map((c) => `<button class="chip" data-chip="${esc(c)}">${esc(c)}</button>`).join("");
@@ -67,6 +67,7 @@ function renderResult(r, text) {
     `<li>${esc(x.do)}<span class="where">${esc(x.where)}</span></li>`).join("")}</ol></div>`;
   if (a.show_date_helper) h += helperHTML();
   if (a.next) h += `<div><p class="label">What happens next</p><p>${esc(a.next)}</p></div>`;
+  if (a.good_to_know && a.good_to_know.length) h += `<div><p class="label">Good to know</p><ul class="links">${a.good_to_know.map((g) => `<li>${esc(g)}</li>`).join("")}</ul></div>`;
   if (a.kind !== "answer") h += `<div class="row" id="resChips"></div>`;
   const links = a.help_links || a.sources.map((u) => ({ label: u.replace(/^https:\/\/(www\.)?/, ""), url: u }));
   if (links.length) h += `<div><p class="label">${a.help_links ? "Official help" : "Sources"}</p><ul class="links">${links.map((l) =>
@@ -135,11 +136,14 @@ function renderEval() {
   if (f.length) h += `<h3>Failure examples</h3>${f.map((x) => `<div class="helper small"><p>“${esc(x.text)}”</p>
     <p class="muted">Expected <span class="mono">${esc(x.expected)}</span> · got <span class="mono">${esc(x.got)}</span>${x.confidence != null ? ` (${Number(x.confidence).toFixed(2)})` : ""} · ${esc(x.why)}</p></div>`).join("")}`;
   h += `<h3>PM corrections</h3><p class="muted small">${esc(EVAL.corrections_note || "Placeholder: corrections to labels, prompt or templates after reviewing failures will be listed here.")}</p>`;
+  if (REVIEW) h += `<h3>${esc(REVIEW.title)}</h3><p class="muted small">Every template line about skipping, reducing, changing the date or cancelling was checked by the PM against Groww help pages on ${esc(REVIEW.reviewed_on)}.</p>${
+    REVIEW.rows.map((r) => `<div class="helper small"><p><strong>${esc(r.line)}</strong> · ${esc(r.answer)}</p><p class="muted">Before: ${esc(r.before)}</p><p>Now: ${esc(r.after)}</p><p class="muted">${r.sources.map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https:\/\/(www\.)?groww\.in\/help\/mutual-funds\//, ""))}</a>`).join(" · ")}</p></div>`).join("")}`;
   h += `<p class="muted small">How it works: the AI only picks a category and quotes the words it relied on; the quote must appear in your message. Answers come from reviewed templates and public help-page facts. If the latest eval misses the gate, the site switches to safe mode automatically. Files: <span class="mono">mvp/golden_set.csv</span>, <span class="mono">mvp/run_eval.py</span>, <span class="mono">outputs/mvp_eval.json</span>.</p>`;
   el.innerHTML = h;
 }
 
 Promise.all([
   fetch("/api/help").then((r) => r.json()).then((j) => { GATE = j.gate; $("safeBanner").hidden = GATE.passed; }).catch(() => {}),
+  fetch("/mvp/pm_template_review.json", { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((j) => { REVIEW = j; }).catch(() => {}),
   fetch("/outputs/mvp_eval.json", { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((j) => { EVAL = j; }).catch(() => {}),
 ]).then(renderEval);

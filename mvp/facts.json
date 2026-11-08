@@ -59,6 +59,42 @@
     "cancel_keeps_investment": {
       "text": "Cancelling a SIP only stops future instalments. The money you’ve already invested stays invested until you choose to withdraw it.",
       "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
+    },
+    "skip_next_short": {
+      "text": "Skip the next instalment: Groww lets you skip one at a time. Your SIP stays set up, and what you’ve already invested stays invested.",
+      "source": "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+      "sources": [
+        "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+        "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+      ]
+    },
+    "edit_amount_date": {
+      "text": "Mutual Funds → SIPs → choose the SIP → Edit SIP to change the amount and/or date (check in your app). The change applies from the next SIP payment date.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+      ]
+    },
+    "skip_path": {
+      "text": "Mutual Funds → SIPs → choose the SIP → Edit SIP → Skip instalment (check in your app).",
+      "source": "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month"
+    },
+    "edit_within_2_working_days": {
+      "text": "If your next instalment is within 2 working days, a skip or change will apply from the one after.",
+      "source": "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
+    },
+    "three_skips_cancel": {
+      "text": "Skipping three instalments in a row cancels the SIP automatically, so skip only the months you need to.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+    },
+    "cancel_notes": {
+      "text": "A cancellation can’t be undone, and you can’t cancel if the next instalment is due within 7 days. To invest again later, you’d start a new SIP.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
+    },
+    "cancel_path": {
+      "text": "Mutual Funds → SIPs → choose the SIP → Cancel SIP.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
     }
   },
   "help_links": [
