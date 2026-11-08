@@ -41,7 +41,7 @@ function wireHelper() {
     if (failed > today) { out.textContent = "That date is in the future. Pick the day the instalment failed."; return; }
     out.innerHTML = today <= cutoff
       ? `Pay Now usually shows on the dashboard until about <strong>${fmt(cutoff)}</strong> (2 working days, weekends skipped; bank holidays can shift it). If it's showing, you can pay from there.`
-      : `The usual Pay Now window (until about ${fmt(cutoff)}) has passed. You can still pay for the month: My SIPs → choose the SIP → "Pay one-time" → enter the amount. The NAV is the one for when the payment completes. Some funds don't accept one-time payments.`;
+      : `The usual Pay Now window (until about ${fmt(cutoff)}) has passed. You can still pay for the month: Mutual Funds → SIPs → choose the SIP → "Pay one-time" → enter the amount. The NAV is the one for when the payment completes. Some funds don't accept one-time payments.`;
     out.innerHTML += ` <span class="muted">Check in your app for your SIP.</span>`;
   });
 }

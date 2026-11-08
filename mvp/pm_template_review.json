@@ -10,7 +10,7 @@
       "after": "skip the next instalment, reduce the amount or change the date · Mutual Funds → SIPs → choose the SIP → Edit SIP (check in your app); change applies from the next SIP payment date. Good to know: 2-working-day note.",
       "sources": [
         "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
-        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2",
+        "https://groww.in/blog/how-to-edit-sip-on-groww",
         "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
       ]
     },
@@ -21,7 +21,7 @@
       "after": "Same path and facts as A. Good to know: 2-working-day note.",
       "sources": [
         "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
-        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2",
+        "https://groww.in/blog/how-to-edit-sip-on-groww",
         "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
       ]
     },
@@ -43,7 +43,7 @@
       "after": "Mutual Funds → SIPs → choose the SIP → Edit SIP (check in your app); applies from the next SIP payment date.",
       "sources": [
         "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
-        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+        "https://groww.in/blog/how-to-edit-sip-on-groww"
       ]
     },
     {
@@ -53,7 +53,7 @@
       "after": "Same path and fact as D.",
       "sources": [
         "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
-        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+        "https://groww.in/blog/how-to-edit-sip-on-groww"
       ]
     },
     {
@@ -73,7 +73,7 @@
       "after": "Same path and fact as D.",
       "sources": [
         "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
-        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+        "https://groww.in/blog/how-to-edit-sip-on-groww"
       ]
     },
     {
@@ -83,7 +83,7 @@
       "after": "Same path and fact as D. Good to know: 2-working-day note.",
       "sources": [
         "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
-        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2",
+        "https://groww.in/blog/how-to-edit-sip-on-groww",
         "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
       ]
     },
@@ -104,6 +104,53 @@
       "sources": [
         "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
         "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+      ]
+    },
+    {
+      "line": "D, E, G, H (+ A, B)",
+      "answer": "Reduce amount / change date",
+      "before": "… → Edit SIP",
+      "after": "Mutual Funds → SIPs → choose the SIP → Edit SIP or Change Amount/Date (the button name can vary by app version) (check in your app). Groww's help page says 'Change Amount/Date'; its blog says 'Edit SIP → Edit Amount & Date'.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
+        "https://groww.in/blog/how-to-edit-sip-on-groww"
+      ]
+    },
+    {
+      "line": "Source swap",
+      "answer": "Reduce amount / change date",
+      "before": "Cited can-i-change-my-sip-amount-2",
+      "after": "Dropped: the page had no readable answer text. Replaced with Groww's blog, which shows the steps. Only pages we could read are cited.",
+      "sources": [
+        "https://groww.in/blog/how-to-edit-sip-on-groww"
+      ]
+    },
+    {
+      "line": "Skip – what happens next",
+      "answer": "Pause or skip",
+      "before": "Long skip text repeated under 'What happens next' (with a 'My SIPs →' path)",
+      "after": "Removed. Step 1's short wording and the two Good to know notes (2-working-day rule; 3 skips in a row cancel the SIP) remain.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
+        "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+      ]
+    },
+    {
+      "line": "Paths",
+      "answer": "All answers",
+      "before": "Some steps said 'My SIPs → …'",
+      "after": "Every path now starts 'Mutual Funds → SIPs → choose the SIP'.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount"
+      ]
+    },
+    {
+      "line": "Should I stop – closing line",
+      "answer": "Should I stop my SIP?",
+      "before": "Whatever you choose, you can start a new SIP later. This assistant doesn't tell you which option to pick.",
+      "after": "Removed the first sentence (the cancel note already covers it). Kept: This assistant doesn't tell you which option to pick.",
+      "sources": [
+        "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
       ]
     }
   ]

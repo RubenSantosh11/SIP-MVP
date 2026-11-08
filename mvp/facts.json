@@ -16,7 +16,7 @@
       "source": "https://groww.in/help/mutual-funds/mf-sip/how-do-i-pay-for-a-missed-installment-3"
     },
     "pay_one_time_route": {
-      "text": "You can pay for the month yourself: My SIPs → choose the SIP → 'Pay one-time' → enter the SIP amount → complete the payment.",
+      "text": "You can pay for the month yourself: Mutual Funds → SIPs → choose the SIP → 'Pay one-time' → enter the SIP amount → complete the payment.",
       "source": "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
     },
     "nav_on_completion": {
@@ -48,14 +48,6 @@
       "text": "Generally, 3 failed instalments in a row can lead to the SIP being cancelled. Check in your app for how your SIP is treated.",
       "source": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"
     },
-    "skip_one_at_a_time": {
-      "text": "If money is tight this month, you can skip the next instalment in advance: My SIPs → choose the SIP → Edit SIP → Skip instalment. Groww lets you skip one instalment at a time; after that date passes, you can skip the next one if you need to. Your SIP stays set up, and what you’ve already invested stays invested.",
-      "source": "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
-      "sources": [
-        "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month",
-        "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
-      ]
-    },
     "cancel_keeps_investment": {
       "text": "Cancelling a SIP only stops future instalments. The money you’ve already invested stays invested until you choose to withdraw it.",
       "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
@@ -69,11 +61,11 @@
       ]
     },
     "edit_amount_date": {
-      "text": "Mutual Funds → SIPs → choose the SIP → Edit SIP to change the amount and/or date (check in your app). The change applies from the next SIP payment date.",
+      "text": "Mutual Funds → SIPs → choose the SIP → Edit SIP or Change Amount/Date (the button name can vary by app version) to change the amount and/or date (check in your app). The change applies from the next SIP payment date.",
       "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
       "sources": [
         "https://groww.in/help/mutual-funds/mf-sip/how-to-change-sip-date-or-amount",
-        "https://groww.in/help/mutual-funds/searchable/can-i-change-my-sip-amount-2"
+        "https://groww.in/blog/how-to-edit-sip-on-groww"
       ]
     },
     "skip_path": {

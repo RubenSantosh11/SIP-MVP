@@ -62,7 +62,7 @@
       "actions": [
         {
           "do": "Check the AutoPay status for this SIP.",
-          "where": "My SIPs → choose the SIP → AutoPay / Payment details. Set it up again or approve it in your bank or UPI app if it shows pending."
+          "where": "Mutual Funds → SIPs → choose the SIP → AutoPay / Payment details. Set it up again or approve it in your bank or UPI app if it shows pending."
         },
         {
           "do": "Pay this month's instalment yourself so the month isn't missed.",
@@ -128,7 +128,7 @@
       "actions": [
         {
           "do": "Check the order status for this instalment.",
-          "where": "My SIPs → choose the SIP → order / transaction history. Statuses can take a few working days to update."
+          "where": "Mutual Funds → SIPs → choose the SIP → order / transaction history. Statuses can take a few working days to update."
         },
         {
           "do": "Keep your bank SMS or statement entry (date and amount).",
@@ -210,9 +210,8 @@
           "where": "Profile → Help & Support in the app."
         }
       ],
-      "next": "{fact:skip_one_at_a_time}",
+      "next": "",
       "facts": [
-        "skip_one_at_a_time",
         "skip_next_short",
         "skip_path",
         "edit_amount_date",
@@ -246,7 +245,7 @@
           "where": "{fact:cancel_keeps_investment} {fact:cancel_path}"
         }
       ],
-      "next": "Whatever you choose, you can start a new SIP later. This assistant doesn't tell you which option to pick.",
+      "next": "This assistant doesn't tell you which option to pick.",
       "facts": [
         "skip_next_short",
         "skip_path",
@@ -290,7 +289,7 @@
         },
         {
           "do": "To see how much you've put in so far and its current value, check your SIP.",
-          "where": "My SIPs → choose the SIP."
+          "where": "Mutual Funds → SIPs → choose the SIP."
         }
       ],
       "next": "",
