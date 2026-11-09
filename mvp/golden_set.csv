@@ -26,7 +26,7 @@ g24,Initiated a nach for my MF on wrong day causing failure and bank deducted fi
 g25,No pause option for SIP only delete,playstore_4ab2f58be21f,wants_break,PM: technically he's missing the SIP control option of pause
 g26,I want stop my Elss sip because there no option to reduce amount so can I stop current and need to start new with lesser amount?,youtube_a2f6b94acd9d,wants_break,flag: wants_break (reduce) vs considering_stop
 g27,"I am unable to close or stop sip.i can not talk to executive for resolution.close all 3 sip at your end today,i am frustrated.",playstore_ce6f1ec680fc,considering_stop,"Hinglish-adjacent, angry"
-g28,agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi,youtube_d8a26db64fc8,out_of_scope,"Hinglish, typos | PM: they are asking a question out of scope"
+g28,agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi,youtube_d8a26db64fc8,considering_stop,"Hinglish, typos | PM: they are asking a question out of scope | PM re-review: changed out_of_scope → considering_stop; they ask whether stopping the SIP keeps them invested, which the stop answer covers"
 g29,Agar main 15 ya 20 saal ke baad sip thod de to kya hoga? usme return kaise calculate hoga.Same percentage milega?,youtube_ce9e9b91a44b,returns_question,Hinglish; flag: also mentions stopping
 g30,How do I change my profile photo?,synthetic off-topic,out_of_scope,
 g31,what's the weather in Bangalore tomorrow,synthetic off-topic,out_of_scope,

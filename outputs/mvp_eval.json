@@ -1,22 +1,22 @@
 {
- "run_at": "2026-11-09 05:11 UTC",
+ "run_at": "2026-11-09 05:19 UTC",
  "model": "gemini-3.8-flash",
  "prompt_version": "classify-v1",
  "confidence_min": 0.7,
  "labelled_by": "PM (Ruben Santosh), by hand",
  "summary": {
   "n": 32,
-  "correct": 28,
-  "accuracy": 0.875,
+  "correct": 29,
+  "accuracy": 0.906,
   "decline_n": 7,
   "decline_ok": 7,
   "decline_rate": 1.0,
   "fallback_n": 3,
   "fallback_rate": 0.094,
   "filter_violations": 0,
-  "filter_catches": 0,
-  "model_only_correct": 28,
-  "model_only_accuracy": 0.875,
+  "filter_catches": 1,
+  "model_only_correct": 29,
+  "model_only_accuracy": 0.906,
   "decided_by": {
    "model": 32
   },
@@ -67,9 +67,9 @@
    "recall": 0.5
   },
   "considering_stop": {
-   "support": 1,
+   "support": 2,
    "predicted": 3,
-   "precision": 0.333,
+   "precision": 0.667,
    "recall": 1.0
   },
   "advice_request": {
@@ -85,10 +85,10 @@
    "recall": 1.0
   },
   "out_of_scope": {
-   "support": 5,
+   "support": 4,
    "predicted": 3,
    "precision": 1.0,
-   "recall": 0.6
+   "recall": 0.75
   }
  },
  "confusion": {
@@ -113,7 +113,7 @@
    "considering_stop": 1
   },
   "considering_stop": {
-   "considering_stop": 1
+   "considering_stop": 2
   },
   "advice_request": {
    "advice_request": 4
@@ -123,7 +123,6 @@
   },
   "out_of_scope": {
    "failed_autopay_issue": 1,
-   "considering_stop": 1,
    "out_of_scope": 3
   }
  },
@@ -148,7 +147,7 @@
    "expected": "failed_autopay_issue",
    "got": "failed_low_balance",
    "model_category": "failed_low_balance",
-   "confidence": 0.9,
+   "confidence": 0.85,
    "evidence_span": "SIPs missed many times",
    "span_found": true,
    "decided_by": "model",
@@ -162,26 +161,12 @@
    "expected": "wants_break",
    "got": "considering_stop",
    "model_category": "considering_stop",
-   "confidence": 0.85,
-   "evidence_span": "can I stop current",
+   "confidence": 0.88,
+   "evidence_span": null,
    "span_found": true,
    "decided_by": "model",
    "fallback_reason": null,
    "notes": "flag: wants_break (reduce) vs considering_stop",
-   "why": "model picked another category"
-  },
-  {
-   "id": "g28",
-   "text": "agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi",
-   "expected": "out_of_scope",
-   "got": "considering_stop",
-   "model_category": "considering_stop",
-   "confidence": 0.95,
-   "evidence_span": "SIP bund karna pade",
-   "span_found": true,
-   "decided_by": "model",
-   "fallback_reason": null,
-   "notes": "Hinglish, typos | PM: they are asking a question out of scope",
    "why": "model picked another category"
   }
  ],
@@ -197,7 +182,7 @@
    "fallback_reason": null,
    "model_category": "pending_processing",
    "confidence": 0.85,
-   "evidence_span": "app said pending",
+   "evidence_span": "pending",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -372,8 +357,8 @@
    "outcome": "decline",
    "fallback_reason": null,
    "model_category": "returns_question",
-   "confidence": 0.98,
-   "evidence_span": "what is returns after a specific year",
+   "confidence": 0.95,
+   "evidence_span": "returns after a specific year",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -438,7 +423,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "bank_charge",
-   "confidence": 0.98,
+   "confidence": 0.99,
    "evidence_span": "bank taken charge 295/- rupees",
    "span_found": true,
    "decided_by": "model",
@@ -504,7 +489,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "bank_charge",
-   "confidence": 0.95,
+   "confidence": 0.98,
    "evidence_span": "ACH return charges have been applied by my bank",
    "span_found": true,
    "decided_by": "model",
@@ -526,7 +511,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_autopay_issue",
-   "confidence": 0.9,
+   "confidence": 0.95,
    "evidence_span": "UPI mandates are not working",
    "span_found": true,
    "decided_by": "model",
@@ -570,7 +555,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_autopay_issue",
-   "confidence": 0.93,
+   "confidence": 0.95,
    "evidence_span": "mandate nhi aate time pr",
    "span_found": true,
    "decided_by": "model",
@@ -636,7 +621,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_low_balance",
-   "confidence": 0.9,
+   "confidence": 0.85,
    "evidence_span": "SIPs missed many times",
    "span_found": true,
    "decided_by": "model",
@@ -658,7 +643,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "pending_processing",
-   "confidence": 0.95,
+   "confidence": 0.92,
    "evidence_span": "queue of pending SIP payment",
    "span_found": true,
    "decided_by": "model",
@@ -681,7 +666,7 @@
    "fallback_reason": null,
    "model_category": "debited_not_reflected",
    "confidence": 0.98,
-   "evidence_span": "debited from bank but is showing transaction failed",
+   "evidence_span": "amount has been debited from bank but is showing transaction failed",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -702,7 +687,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "bank_charge",
-   "confidence": 0.95,
+   "confidence": 0.98,
    "evidence_span": "bank deducted fine",
    "span_found": true,
    "decided_by": "model",
@@ -724,7 +709,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "wants_break",
-   "confidence": 0.95,
+   "confidence": 0.92,
    "evidence_span": "pause",
    "span_found": true,
    "decided_by": "model",
@@ -746,14 +731,16 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "considering_stop",
-   "confidence": 0.85,
-   "evidence_span": "can I stop current",
+   "confidence": 0.88,
+   "evidence_span": null,
    "span_found": true,
    "decided_by": "model",
    "filter": {
-    "model_text_hits": [],
+    "model_text_hits": [
+     "elss"
+    ],
     "answer_hits": [],
-    "dropped_model_text": false,
+    "dropped_model_text": true,
     "violations": 0
    },
    "notes": "flag: wants_break (reduce) vs considering_stop"
@@ -768,7 +755,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "considering_stop",
-   "confidence": 0.98,
+   "confidence": 0.95,
    "evidence_span": "close or stop sip",
    "span_found": true,
    "decided_by": "model",
@@ -784,13 +771,13 @@
    "id": "g28",
    "text": "agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi",
    "source": "youtube_d8a26db64fc8",
-   "expected": "out_of_scope",
+   "expected": "considering_stop",
    "got": "considering_stop",
-   "correct": false,
+   "correct": true,
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "considering_stop",
-   "confidence": 0.95,
+   "confidence": 0.92,
    "evidence_span": "SIP bund karna pade",
    "span_found": true,
    "decided_by": "model",
@@ -800,7 +787,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "Hinglish, typos | PM: they are asking a question out of scope"
+   "notes": "Hinglish, typos | PM: they are asking a question out of scope | PM re-review: changed out_of_scope → considering_stop; they ask whether stopping the SIP keeps them invested, which the stop answer covers"
   },
   {
    "id": "g29",
@@ -812,7 +799,7 @@
    "outcome": "decline",
    "fallback_reason": null,
    "model_category": "returns_question",
-   "confidence": 0.92,
+   "confidence": 0.95,
    "evidence_span": "usme return kaise calculate hoga",
    "span_found": true,
    "decided_by": "model",
@@ -891,5 +878,5 @@
    "notes": "very short"
   }
  ],
- "corrections_note": "PM hand-labelled all 32 rows on 9 Nov 2026 before scoring. The PM changed 2 of Claude's draft labels: g19: failed_autopay_issue → out_of_scope (he's asking a question not making a statement); g28: considering_stop → out_of_scope (they are asking a question out of scope). Earlier fix found by the first eval run: the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns … aren't guaranteed\", so returns questions fell to the fallback; the filter now blocks only un-negated 'guaranteed' and a test covers it."
+ "corrections_note": "PM hand-labelled all 32 rows on 9 Nov 2026 before scoring, changing 2 of Claude's draft labels: g19: failed_autopay_issue → out_of_scope (he's asking a question, not making a statement); g28: considering_stop → out_of_scope (asking a question out of scope). After reviewing the first scored run, the PM changed g28 back to considering_stop: the person asks whether stopping the SIP keeps them invested, which the 'Should I stop my SIP?' answer covers (cancelling only stops future instalments; invested money stays invested). Earlier fix found by the first eval run: the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns … aren't guaranteed\", so returns questions fell to the fallback; the filter now blocks only un-negated 'guaranteed' and a test covers it."
 }

@@ -1,6 +1,6 @@
 # Golden set – hand-labelled by the PM (9 Nov 2026)
 
-`golden_set.csv` holds 32 real or test messages. The `expected_category` values were **hand-labelled by the PM** (Ruben Santosh) on 9 Nov 2026, starting from Claude's draft guesses. The PM changed 2 of 32 (g19, g28); PM reasoning is in `notes` after "PM:". The original labelling sheet is `golden_set_TO_LABEL.csv`.
+`golden_set.csv` holds 32 real or test messages. The `expected_category` values were **hand-labelled by the PM** (Ruben Santosh) on 9 Nov 2026, starting from Claude's draft guesses. The PM changed 2 of 32 (g19, g28), then after reviewing the first scored run changed g28 back to considering_stop; PM reasoning is in `notes` after "PM:". The original labelling sheet is `golden_set_TO_LABEL.csv`.
 
 To hand-label:
 1. Open `golden_set.csv`. For each row, read `text` and set `expected_category` to one of:
