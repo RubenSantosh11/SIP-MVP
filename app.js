@@ -15,6 +15,8 @@ const SCENARIOS = {
     msg: "Your ₹1,000 SIP instalment for 5 Nov didn't go through, and your bank may have charged a fee. See why and what you can do." },
 };
 let scen = "failed", GATE = null;
+// Anonymous id for this page visit, so one tester's questions can be read together in the log. No personal data.
+const SID = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()).slice(0, 13);
 const SOURCE_TITLES = {
   "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25": "Why did my instalment fail? (Groww help)",
   "https://groww.in/help/mutual-funds/mf-sip/how-do-i-pay-for-a-missed-installment-3": "How do I pay a missed instalment? (Groww help)",
@@ -185,7 +187,7 @@ async function ask(body, btn) {
   if (btn) btn.disabled = true;
   st.textContent = body.text ? "Reading…" : "";
   try {
-    const res = await fetch("/api/help", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const res = await fetch("/api/help", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...body, sid: SID }) });
     const r = await res.json();
     if (!res.ok || r.error) { st.innerHTML = `<span class="err">${esc(r.error || "Something went wrong. Try an option below.")}</span>`; return; }
     if (r.gate) setGate(r.gate);

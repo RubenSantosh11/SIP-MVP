@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from sip_help import core  # noqa: E402
+from sip_help import core, store  # noqa: E402
 
 MAX_CHARS = 600
 MIN_CHARS = 3
@@ -60,7 +60,7 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def do_GET(self):  # noqa: N802
-        self._send(200, {"ok": True, "model": core.MODEL, "key_configured": bool(__import__("os").environ.get("GEMINI_API_KEY")), "gate": public_gate(), "chips": list(core.CHIPS),
+        self._send(200, {"ok": True, "model": core.MODEL, "key_configured": bool(__import__("os").environ.get("GEMINI_API_KEY")), "log_store": store.enabled(), "gate": public_gate(), "chips": list(core.CHIPS),
                          "disclaimer": core.DISCLAIMER})
 
     def do_POST(self):  # noqa: N802
@@ -89,3 +89,4 @@ class handler(BaseHTTPRequestHandler):
                 out = core.help_for(text=text, safe_mode=safe)
         out["gate"] = gate
         self._send(200, out)
+        store.record(str(body.get("sid") or ""), text, chip, out)  # after the reply, so it never slows the answer

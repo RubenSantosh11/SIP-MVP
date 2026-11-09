@@ -40,3 +40,10 @@ def test_every_quick_answer_passes_the_filter_and_uses_known_categories():
         for cat in by_cat:
             assert cat in core.CATEGORIES
             assert core.filter_hits(core.quick_answer(q, cat)) == [], (q, cat)
+
+
+def test_log_redacts_personal_details():
+    from sip_help import store
+    t = store.redact("my PAN is ABCDE1234F, call 98765 43210, acct 123456789012, a@b.com, IFSC HDFC0001234")
+    for bad in ["ABCDE1234F", "98765 43210", "123456789012", "a@b.com", "HDFC0001234"]:
+        assert bad not in t
