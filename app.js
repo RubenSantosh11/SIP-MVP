@@ -52,7 +52,7 @@ function setScenario(s) {
   $("demoDate").textContent = `Demo date: ${fmt(sc.today)}`;
   $("sipStatus").className = "status " + sc.status[0];
   $("sipStatus").textContent = "Status: " + sc.status[1];
-  $("stageNotif").hidden = false; $("stageSip").hidden = true; $("result").hidden = true; $("askBox").hidden = true;
+  $("stageNotif").hidden = false; $("stageSip").hidden = true; $("result").hidden = true;
 }
 document.querySelectorAll("#seg button").forEach((b) => b.addEventListener("click", () => setScenario(b.dataset.s)));
 $("notif").addEventListener("click", () => {
@@ -111,11 +111,27 @@ function stepHTML(a) {
   return `<div class="opt"><b>${esc(a.do)}</b><span class="path">${esc(path)}</span>${howHTML(more)}</div>`;
 }
 
-function render(r) {
+function highlight(text, span) {
+  const i = span ? text.toLowerCase().indexOf(span.toLowerCase()) : -1;
+  if (i < 0) return esc(text);
+  return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + span.length)) + "</mark>" + esc(text.slice(i + span.length));
+}
+// For typed questions: show how the AI read the message, up front.
+function aiReadHTML(r, text) {
+  const u = r.understood;
+  let h = `<div class="read"><span class="lbl"><span class="ai-tag">AI</span>How the AI read your message</span><q>${highlight(text, u.evidence_span)}</q>`;
+  if (u.decided_by === "safe_mode") h += `<span>The AI is switched off until its quality check passes, so here are reliable places to look.</span>`;
+  else if (!u.category) h += `<span>It wasn't sure enough to answer (${esc({ low_confidence: "low confidence", span_not_found: "it couldn't point to the words it relied on", out_of_scope: "this doesn't look like a SIP payment question", model_unavailable: "it didn't respond", rate_limited: "too many questions this hour" }[r.fallback_reason] || "unclear")}), so here are reliable places to look instead of a guess.</span>`;
+  else h += `<span class="arrow">→ <strong>${esc(u.label)}</strong> · ${confWord(u.confidence ?? 0)} confidence${u.evidence_span ? " · the highlighted words are what it relied on" : ""}</span>`;
+  return h + `</div>`;
+}
+
+function render(r, text) {
   const a = r.answer, u = r.understood, el = $("result");
   const [head, rest] = split(a.happened);
   const p = a.kind === "answer" ? plan(u.category, a.actions) : null;
-  let h = `<p class="headline">${esc(head)}</p>`;
+  let h = text ? aiReadHTML(r, text) : "";
+  h += `<p class="headline">${esc(head)}</p>`;
   if (rest) h += `<p class="sub">${esc(rest)}</p>`;
   if (p) {
     const pa = a.actions[p.i];
@@ -140,7 +156,7 @@ function render(r) {
   el.innerHTML = h; el.hidden = false;
   el.querySelectorAll("[data-sheet]").forEach((b) => b.addEventListener("click", () => openSheet(b.dataset.sheet)));
   el.querySelectorAll("[data-chips]").forEach(renderChips);
-  $("askBox").hidden = false;
+
   el.focus({ preventScroll: true });
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -152,12 +168,12 @@ async function ask(body, btn) {
   try {
     const res = await fetch("/api/help", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
     const r = await res.json();
-    if (!res.ok || r.error) { st.innerHTML = `<span class="err">${esc(r.error || "Something went wrong. Try an option below.")}</span>`; $("askBox").hidden = false; return; }
+    if (!res.ok || r.error) { st.innerHTML = `<span class="err">${esc(r.error || "Something went wrong. Try an option below.")}</span>`; return; }
     if (r.gate) setGate(r.gate);
     st.textContent = "";
-    render(r);
+    render(r, body.text || "");
   } catch (e) {
-    st.innerHTML = `<span class="err">Couldn't reach the helper. Try again, or use an option below.</span>`; $("askBox").hidden = false;
+    st.innerHTML = `<span class="err">Couldn't reach the helper. Try again, or use an option below.</span>`;
   } finally { if (btn) btn.disabled = false; }
 }
 
@@ -165,7 +181,13 @@ function renderChips(el) {
   el.innerHTML = CHIPS.map((c) => `<button class="chip" data-chip="${esc(c)}">${esc(c)}</button>`).join("");
   el.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => ask({ chip: b.dataset.chip })));
 }
-function setGate(g) { GATE = g; $("safeNote").hidden = !!g.passed; }
+function setGate(g) { GATE = g; $("safeNote").hidden = !!g.passed; $("aiBadge").innerHTML = badge(); }
+
+const EXAMPLES = ["pending since Monday", "bank cut 590", "paisa kat gaya par SIP nahi dikha", "which fund should I buy?"];
+$("examples").innerHTML = EXAMPLES.map((x) => `<button class="chip ex" data-ex="${esc(x)}">${esc(x)}</button>`).join("");
+$("examples").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
+  $("q").value = b.dataset.ex; ask({ text: b.dataset.ex }, $("ask"));
+}));
 
 function openSheet(text) {
   $("sheetText").textContent = text;

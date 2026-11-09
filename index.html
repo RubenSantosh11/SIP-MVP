@@ -16,6 +16,8 @@
     <p class="tagline">A concept for Groww's SIP section · not affiliated with Groww · not investment advice</p>
   </header>
 
+  <div class="layout">
+  <div class="col-main">
   <section class="scen" aria-label="Try a scenario">
     <div class="seg" role="radiogroup" aria-label="Scenario" id="seg">
       <button role="radio" aria-checked="true" data-s="failed">Failed: low balance</button>
@@ -49,14 +51,30 @@
 
   <section id="result" class="card" hidden aria-live="polite" tabindex="-1"></section>
 
-  <section id="askBox" class="card" hidden aria-labelledby="askTitle">
-    <label for="q"><h3 id="askTitle">Ask anything else about this payment</h3></label>
-    <p id="safeNote" class="note" hidden>Typed questions are paused while answers are being checked. Tap an option below for now.</p>
-    <textarea id="q" maxlength="600" placeholder="e.g. 'bank cut 590', 'paisa kat gaya par SIP nahi dikha'"></textarea>
-    <button class="btn slim" id="ask">Ask</button>
-    <p id="askStatus" class="small muted" aria-live="polite"></p>
-    <div><p class="small muted" style="margin-bottom:6px">Or tap one:</p><div class="chips" id="chips"></div></div>
+  </div>
+
+  <aside class="col-ai">
+  <section id="askBox" class="card ai" aria-labelledby="askTitle">
+    <div class="ai-head"><span class="ai-tag">AI</span><h2 id="askTitle">Describe it in your own words</h2></div>
+    <p class="small muted">Type what you see or what your bank said, in English or Hinglish. The AI works out what's going on with this payment.</p>
+    <p id="safeNote" class="note" hidden>The AI is switched off until its quality check passes (test labels are being reviewed). Until then, typed questions get links to official help, and the options below still work.</p>
+    <label for="q" class="sr">Your message</label>
+    <textarea id="q" maxlength="600" placeholder="e.g. pending since Monday, bank cut 590…"></textarea>
+    <div class="row-btn"><button class="btn slim" id="ask">Ask</button><span id="askStatus" class="small muted" aria-live="polite"></span></div>
+    <div><p class="small muted" style="margin-bottom:6px">Try typing one of these:</p><div class="chips" id="examples"></div></div>
+    <details class="ai-how"><summary>How the AI helps</summary><div class="in"><ol class="steps">
+      <li><b>Reads your message</b>, even messy text or Hinglish like "paisa kat gaya par SIP nahi dikha".</li>
+      <li><b>Picks the issue and quotes the words it relied on.</b> We check the quote is really in your message; if it isn't, or it's unsure, you get links to official help instead of a guess.</li>
+      <li><b>The answer itself comes from checked help-page facts</b>, not from the AI. It never recommends funds or predicts returns.</li>
+    </ol></div></details>
+    <div class="ai-badge" id="aiBadge"></div>
   </section>
+  <section class="card" aria-labelledby="quickTitle">
+    <h3 id="quickTitle">Or pick what's closest</h3>
+    <div class="chips" id="chips"></div>
+  </section>
+  </aside>
+  </div>
 
   <footer>
     <p><strong>Not investment advice.</strong> This assistant explains what's happening with your SIP; it doesn't recommend funds.</p>
