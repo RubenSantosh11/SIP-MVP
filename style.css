@@ -149,3 +149,8 @@ td.n, th.n { text-align: right; }
 
 .help { background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
 .help h3 { margin-bottom: 6px; }
+
+.quick { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+.quick .lbl { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-ink); }
+.quick p { color: var(--strong); font-weight: 500; }
+.gtk { display: flex; flex-direction: column; gap: 6px; }

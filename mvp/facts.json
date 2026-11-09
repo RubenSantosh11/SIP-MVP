@@ -87,6 +87,34 @@
     "cancel_path": {
       "text": "Mutual Funds → SIPs → choose the SIP → Cancel SIP.",
       "source": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
+    },
+    "failed_debit_money_safe": {
+      "text": "If the debit failed, the SIP amount wasn't taken from your account, and the money you've already invested isn't affected. Your bank may still charge a bounce fee.",
+      "source": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed",
+      "sources": [
+        "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed",
+        "https://groww.in/help/mutual-funds/mf-autopay/what-are-ecs-charges--96"
+      ]
+    },
+    "pending_money_safe": {
+      "text": "If the debit didn't go through, the amount wasn't taken from your account, and the money you've already invested isn't affected. If your bank shows the money did leave, tap 'Money left my bank but doesn't show'.",
+      "source": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"
+    },
+    "debit_in_advance": {
+      "text": "Your money isn't lost. Groww takes the SIP amount one bank working day before the SIP date, and the order shows under 'Orders in progress' on the SIP date. If it's been more than 2 working days, contact support.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/sip-installment-was-deducted-but-the-order-is-not-reflected-on-the-dashboard"
+    },
+    "pay_yourself_after_failure": {
+      "text": "Groww's help pages don't say a failed instalment is retried automatically. They say to pay it yourself: dashboard → the pending SIP payment → Pay.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/how-do-i-pay-for-my-sip-installment-if-the-autopay-debit-has-failed--40"
+    },
+    "one_skip_not_cancel": {
+      "text": "One skip won't cancel your SIP. Skipping three instalments in a row cancels it automatically.",
+      "source": "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+    },
+    "skip_keeps_investment": {
+      "text": "A skip doesn't touch what you've already invested, and your SIP stays set up.",
+      "source": "https://groww.in/help/mutual-funds/order/can-i-pause-sip-for-next-month"
     }
   },
   "help_links": [

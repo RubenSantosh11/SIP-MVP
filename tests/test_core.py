@@ -32,3 +32,11 @@ def test_safe_mode_free_text_goes_to_fallback():
 def test_advice_rule_catches_clear_advice_asks():
     assert core.rule_category("can you suggest a sip that will give me good return") == "advice_request"
     assert core.rule_category("my sip is pending since monday") is None
+
+
+def test_every_quick_answer_passes_the_filter_and_uses_known_categories():
+    for q, by_cat in core.TEMPLATES["quick_answers"].items():
+        assert q in core.QUESTIONS
+        for cat in by_cat:
+            assert cat in core.CATEGORIES
+            assert core.filter_hits(core.quick_answer(q, cat)) == [], (q, cat)

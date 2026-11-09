@@ -145,3 +145,16 @@ Ordered by impact on the Part 4 problem (recovering the instalment in time).
 ---
 
 *Files: prototype `index.html` / `app.js`; answer text `mvp/templates.json` + `mvp/facts.json`; eval `outputs/mvp_eval.json`; real-user script `mvp/part6_test_script.md`.*
+
+---
+
+## 11. Update: changes made after this test (same day)
+
+| Item | Status | What changed |
+|---|---|---|
+| 1. Answer the direct question first | **Done** | The AI also reports whether the user asked "did I lose my money?", "will it go through by itself?" or "will this cancel my SIP?". A reviewed **Quick answer** line (from facts.json, never AI-written) appears above the headline. In the re-run, all 3 direct questions were answered first. |
+| 2. Good to know visible | **Done** | Shown openly under the answer; only the sources stay collapsed. |
+| 3. Is a failed SIP retried automatically? | **Researched** | Groww's help pages don't say it is; they say to pay it yourself from the dashboard. Third-party sources disagree. So the Quick answer states only what Groww says and makes no claim either way. |
+| 4. Shorter, warmer decline | **Done** | About 150–160 words (was about 215), 3 Groww help links (was 8). The first step is now "To see how your own SIP is doing, open it in the app". |
+
+Eval after the changes: **31/32 (97%)**, advice declined 7/7, 0 filter violations, gate passed. The Part 6 dry run with 5 simulated participants on the updated build is in `part6_test_script.md`.

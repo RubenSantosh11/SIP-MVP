@@ -136,6 +136,7 @@ function render(r, text) {
   const [head, rest] = split(a.happened);
   const p = a.kind === "answer" ? plan(u.category, a.actions, u) : null;
   let h = text ? aiReadHTML(r, text) : "";
+  if (a.quick_answer) h += `<div class="quick"><span class="lbl">Quick answer</span><p>${esc(a.quick_answer)}</p></div>`;
   h += `<p class="headline">${esc(head)}</p>`;
   if (rest) h += `<p class="sub">${esc(rest)}</p>`;
   if (p) {
@@ -155,16 +156,18 @@ function render(r, text) {
   if (a.kind !== "answer") {
     // Fallback / decline: reliable places to go, shown openly (not collapsed).
     let g = `<div class="help"><h3>Get a reliable answer</h3><ul class="plain">`;
-    if (text) g += `<li><a href="https://www.google.com/search?q=${encodeURIComponent("site:groww.in/help " + text)}" target="_blank" rel="noopener">Search Groww's help pages for “${esc(text.length > 60 ? text.slice(0, 57) + "…" : text)}”</a> <span class="muted small">(opens Google)</span></li>`;
+    const isDecline = a.kind === "decline";
+    if (text && !isDecline) g += `<li><a href="https://www.google.com/search?q=${encodeURIComponent("site:groww.in/help " + text)}" target="_blank" rel="noopener">Search Groww's help pages for “${esc(text.length > 60 ? text.slice(0, 57) + "…" : text)}”</a> <span class="muted small">(opens Google)</span></li>`;
     g += (a.general_help_links || []).map(li).join("") + `</ul>`;
-    if ((a.help_links || []).length) g += `<p class="small muted" style="margin-top:8px">If it's about a SIP payment:</p><ul class="plain">${a.help_links.map(li).join("")}</ul>`;
+    if (!isDecline && (a.help_links || []).length) g += `<p class="small muted" style="margin-top:8px">If it's about a SIP payment:</p><ul class="plain">${a.help_links.map(li).join("")}</ul>`;
     h += g + `</div><div class="chips" data-chips></div>`;
   } else {
     const links = a.sources.map((x) => ({ label: SOURCE_TITLES[x] || x.replace(/^https:\/\/(www\.)?/, ""), url: x }));
     const gtk = a.good_to_know || [];
-    h += `<details><summary>Where this comes from</summary><div class="in">`;
-    if (gtk.length) h += `<div><h3>Good to know</h3><ul class="plain">${gtk.map((g) => `<li>${esc(g)}</li>`).join("")}</ul></div>`;
-    h += `<div><h3>Sources</h3><ul class="plain">${links.map(li).join("")}</ul></div>`;
+    // Good to know is shown openly: it often answers the user's real worry (e.g. "will one skip cancel my SIP?").
+    if (gtk.length) h += `<div class="gtk"><h3>Good to know</h3><ul class="plain">${gtk.map((g) => `<li>${esc(g)}</li>`).join("")}</ul></div>`;
+    h += `<details><summary>Sources</summary><div class="in">`;
+    h += `<div><h3 class="sr">Sources</h3><ul class="plain">${links.map(li).join("")}</ul></div>`;
     h += `<p class="small muted">Facts come from public help pages. Check in your app for your own SIP.</p></div></details>`;
   }
   // Typed questions already show "How the AI read your message" at the top, so only the badge here.

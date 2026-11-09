@@ -23,7 +23,8 @@ EVAL_PATH = ROOT / "outputs" / "mvp_eval.json"
 MODEL = os.environ.get("SIP_HELP_MODEL", "gemini-3.8-flash")
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 CONFIDENCE_MIN = 0.7
-PROMPT_VERSION = "classify-v3"  # v2: break_option; v3: "had enough balance" rule + priority for mixed messages
+PROMPT_VERSION = "classify-v4"  # v2: break_option; v3: balance rule + priority; v4: direct question type
+QUESTIONS = ["money_safe", "auto_retry", "will_cancel", "none"]
 BREAK_OPTIONS = ["skip", "reduce", "change_date", "none"]
 
 CATEGORIES = list(TEMPLATES["labels"].keys())
@@ -117,7 +118,11 @@ Also set break_option: if the category is wants_break, say which change they ask
 "skip" (skip or pause an instalment or month), "reduce" (lower the amount), "change_date" (move the SIP / debit date),
 or "none" if they didn't say which or asked for several. For every other category use "none".
 
-Return: {"category": <one category id>, "confidence": <0..1>, "evidence_span": <the shortest exact substring of the message, copied character for character, that justifies the category>, "break_option": <skip|reduce|change_date|none>}"""
+Also set question: did they ask one of these direct questions?
+"money_safe" (did I lose my money / is my money gone / is it safe), "auto_retry" (will it go through by itself / will it retry /
+do I need to do anything), "will_cancel" (will this cancel or stop my SIP), or "none".
+
+Return: {"category": <one category id>, "confidence": <0..1>, "evidence_span": <the shortest exact substring of the message, copied character for character, that justifies the category>, "break_option": <skip|reduce|change_date|none>, "question": <money_safe|auto_retry|will_cancel|none>}"""
 
 
 class ModelUnavailable(Exception):
@@ -145,8 +150,9 @@ def call_model(text: str, retries: int = 2) -> dict:
                     "confidence": {"type": "NUMBER"},
                     "evidence_span": {"type": "STRING"},
                     "break_option": {"type": "STRING", "enum": BREAK_OPTIONS},
+                    "question": {"type": "STRING", "enum": QUESTIONS},
                 },
-                "required": ["category", "confidence", "evidence_span", "break_option"],
+                "required": ["category", "confidence", "evidence_span", "break_option", "question"],
             },
         },
     }
@@ -190,6 +196,12 @@ def _fill(s: str) -> str:
     return s.strip()
 
 
+def quick_answer(question: str | None, category: str | None) -> str | None:
+    """Reviewed one-line answer to the user's direct question, if we have one for this category."""
+    text = TEMPLATES.get("quick_answers", {}).get(question or "", {}).get(category or "")
+    return _fill(text) if text else None
+
+
 def render(key: str) -> dict:
     t = TEMPLATES["answers"][key]
     facts = FACTS["facts"]
@@ -210,7 +222,7 @@ def render(key: str) -> dict:
 
 
 def _answer_text(ans: dict) -> str:
-    return " ".join([ans["happened"], ans["next"]] + ans.get("good_to_know", []) + [a["do"] + " " + a["where"] for a in ans["actions"]])
+    return " ".join([ans["happened"], ans["next"], ans.get("quick_answer") or ""] + ans.get("good_to_know", []) + [a["do"] + " " + a["where"] for a in ans["actions"]])
 
 
 # ---- Gate --------------------------------------------------------------------------------------
@@ -243,7 +255,7 @@ def help_for(text: str = "", chip: str | None = None, safe_mode: bool | None = N
     if safe_mode is None:
         safe_mode = not gate_status()["passed"]
     text = (text or "").strip()
-    understood = {"category": None, "label": None, "confidence": None, "evidence_span": None, "break_option": None,
+    understood = {"category": None, "label": None, "confidence": None, "evidence_span": None, "break_option": None, "question": None,
                   "span_found": None, "decided_by": None, "model_category": None}
     reason = None
 
@@ -265,7 +277,8 @@ def help_for(text: str = "", chip: str | None = None, safe_mode: bool | None = N
             span = str(m.get("evidence_span") or "")
             found = span_found(span, text)
             bo = m.get("break_option") if m.get("break_option") in BREAK_OPTIONS else "none"
-            understood.update(break_option=bo if mcat == "wants_break" else None)
+            understood.update(break_option=bo if mcat == "wants_break" else None,
+                              question=m.get("question") if m.get("question") in QUESTIONS[:-1] else None)
             understood.update(model_category=mcat, confidence=round(conf, 2), evidence_span=span, span_found=found,
                               decided_by="model")
             cat = mcat
@@ -291,6 +304,8 @@ def help_for(text: str = "", chip: str | None = None, safe_mode: bool | None = N
     if understood["category"]:
         understood["label"] = LABELS[understood["category"]]
     ans = render(key)
+    if key != "fallback":
+        ans["quick_answer"] = quick_answer(understood.get("question"), understood["category"])
 
     # Output filter on everything that came from the model and on the final rendered answer.
     filt = {"model_text_hits": [], "answer_hits": [], "dropped_model_text": False}

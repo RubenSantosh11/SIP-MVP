@@ -266,11 +266,11 @@
       "happened": "I can't recommend funds or predict returns. I can help with what's happening to your SIP and your options.",
       "actions": [
         {
-          "do": "If your SIP failed, is pending or was charged, tap one of the options below.",
-          "where": "Or describe what you see on the SIP."
+          "do": "To see how your own SIP is doing, open it in the app.",
+          "where": "Mutual Funds → SIPs → choose the SIP."
         },
         {
-          "do": "For choosing investments, a SEBI-registered investment adviser can help.",
+          "do": "For help choosing investments, a SEBI-registered investment adviser can help.",
           "where": "You can check an adviser's registration on the SEBI website."
         }
       ],
@@ -319,5 +319,30 @@
       "show_date_helper": false,
       "good_to_know": []
     }
-  }
+  },
+  "quick_answers": {
+    "money_safe": {
+      "failed_low_balance": "{fact:failed_debit_money_safe}",
+      "failed_autopay_issue": "{fact:failed_debit_money_safe}",
+      "bank_charge": "{fact:failed_debit_money_safe}",
+      "pending_processing": "{fact:pending_money_safe}",
+      "debited_not_reflected": "{fact:debit_in_advance}",
+      "considering_stop": "{fact:cancel_keeps_investment}",
+      "wants_break": "{fact:skip_keeps_investment}"
+    },
+    "auto_retry": {
+      "failed_low_balance": "{fact:pay_yourself_after_failure}",
+      "failed_autopay_issue": "{fact:pay_yourself_after_failure}",
+      "bank_charge": "{fact:pay_yourself_after_failure}",
+      "pending_processing": "{fact:pay_yourself_after_failure}"
+    },
+    "will_cancel": {
+      "failed_low_balance": "{fact:one_miss_not_cancel} {fact:three_in_row}",
+      "failed_autopay_issue": "{fact:one_miss_not_cancel} {fact:three_in_row}",
+      "bank_charge": "{fact:one_miss_not_cancel} {fact:three_in_row}",
+      "pending_processing": "{fact:one_miss_not_cancel} {fact:three_in_row}",
+      "wants_break": "{fact:one_skip_not_cancel}"
+    }
+  },
+  "_quick_answers_note": "Shown first when the AI detects a direct question (money_safe / auto_retry / will_cancel). The AI only picks the question type; the text is reviewed and comes from facts.json. A (question, category) pair not listed shows nothing."
 }
