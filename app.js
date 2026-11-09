@@ -73,7 +73,7 @@ const BREAK = {
 function plan(cat, actions, u = {}) {
   const w = payWindow();
   const until = sameDay(w.cutoff, w.today) ? `today, ${fmt(w.cutoff)}` : fmt(w.cutoff);
-  const pay = (i) => ({ i, label: w.open ? `Pay now (open until ${until})` : "Pay for this month (one-time)",
+  const pay = (i) => ({ i, payNow: w.open, label: w.open ? `Pay now (open until ${until})` : "Pay for this month (one-time)",
     sheet: w.open ? "This would open Groww's Pay Now screen for the 5 Nov instalment." : "This would open the Pay one-time screen for this SIP." });
   switch (cat) {
     case "failed_low_balance": case "pending_processing": return pay(w.open ? 0 : 1);
@@ -141,7 +141,8 @@ function render(r, text) {
   if (p) {
     const pa = a.actions[p.i];
     h += `<button class="btn" data-sheet="${esc(p.sheet)}">${esc(p.label)}</button>`;
-    const [pp, pm] = pathAndMore(pa.where);
+    // "Pay now" must show the Pay Now sentence, not the one-time route that may follow it.
+    const [pp, pm] = p.payNow ? split(pa.where) : pathAndMore(pa.where);
     h += `<div class="opt"><span class="path">${esc(pp)}</span>${howHTML(pm)}</div>`;
     if (a.next) h += `<p class="next">${esc(a.next)}</p>`;
     const others = a.actions.filter((_, i) => i !== p.i);

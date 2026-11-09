@@ -17,7 +17,7 @@ g15,"I have sufficient balance in my bank account for SIP. But this application 
 g16,UPI mandates are not working. Orders are under processing. SIP is not getting deducted.,playstore_c094698a0bf2,failed_autopay_issue,flag: vs pending_processing | PM: It mentions orders under processing as well but not the primary cause
 g17,"E mandate not working properly Even after the due date , money didn't got deducted.",playstore_21bb33ae88a9,failed_autopay_issue,
 g18,mandate nhi aate time pr.,playstore_b3dc0f3f0776,failed_autopay_issue,"Hinglish, very short"
-g19,kya matlab autopay ka jab khud hi pay krna pdta hai,playstore_7a8df7eb9f68,out_of_scope,Hinglish; flag: could be out_of_scope (complaint) | PM: he's asking a question not making a statement
+g19,kya matlab autopay ka jab khud hi pay krna pdta hai,playstore_7a8df7eb9f68,failed_autopay_issue,Hinglish; flag: could be out_of_scope (complaint) | PM: he's asking a question not making a statement | PM re-review: changed back to failed_autopay_issue – having to pay manually means AutoPay isn't working for him
 g20,Abhi jo Update aaya hai kuch samajh nahi aa raha SIP payment nahi ho pa raha hai,playstore_89747a0f3dac,failed_low_balance,"Hinglish; generic failure, cause unknown; flag"
 g21,SIPs missed many times even with having the required balance before the due date.,playstore_659f217df885,failed_autopay_issue,flag: balance was there so likely mandate; vs failed_low_balance | PM: not sure how it is missed they didnt mention with specifics
 g22,even after paying it is still there in the queue of pending SIP payment,playstore_3fa49f13b810,pending_processing,
