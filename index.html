@@ -59,7 +59,8 @@
     <p class="small muted">Type what you see or what your bank said, in English or Hinglish. The AI works out what's going on with this payment.</p>
     <p id="safeNote" class="note" hidden>The AI is switched off until its quality check passes (test labels are being reviewed). Until then, typed questions get links to official help, and the options below still work.</p>
     <label for="q" class="sr">Your message</label>
-    <textarea id="q" maxlength="600" placeholder="e.g. pending since Monday, bank cut 590…"></textarea>
+    <textarea id="q" maxlength="600" placeholder="e.g. pending since Monday, bank cut 590…" aria-describedby="privacy"></textarea>
+    <p id="privacy" class="small muted">Please don't type account numbers, PAN, card details or other personal information.</p>
     <div class="row-btn"><button class="btn slim" id="ask">Ask</button><span id="askStatus" class="small muted" aria-live="polite"></span></div>
     <div><p class="small muted" style="margin-bottom:6px">Try typing one of these:</p><div class="chips" id="examples"></div></div>
     <details class="ai-how"><summary>How the AI helps</summary><div class="in"><ol class="steps">

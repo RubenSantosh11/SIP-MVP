@@ -1,13 +1,13 @@
 {
- "run_at": "2026-11-09 05:35 UTC",
+ "run_at": "2026-11-09 06:15 UTC",
  "model": "gemini-3.8-flash",
- "prompt_version": "classify-v2",
+ "prompt_version": "classify-v3",
  "confidence_min": 0.7,
  "labelled_by": "PM (Ruben Santosh), by hand",
  "summary": {
   "n": 32,
-  "correct": 29,
-  "accuracy": 0.906,
+  "correct": 30,
+  "accuracy": 0.938,
   "decline_n": 7,
   "decline_ok": 7,
   "decline_rate": 1.0,
@@ -15,8 +15,8 @@
   "fallback_rate": 0.094,
   "filter_violations": 0,
   "filter_catches": 0,
-  "model_only_correct": 29,
-  "model_only_accuracy": 0.906,
+  "model_only_correct": 30,
+  "model_only_accuracy": 0.938,
   "decided_by": {
    "model": 32
   },
@@ -32,15 +32,15 @@
  "per_category": {
   "failed_low_balance": {
    "support": 2,
-   "predicted": 3,
-   "precision": 0.667,
+   "predicted": 2,
+   "precision": 1.0,
    "recall": 1.0
   },
   "failed_autopay_issue": {
    "support": 5,
-   "predicted": 5,
-   "precision": 0.8,
-   "recall": 0.8
+   "predicted": 6,
+   "precision": 0.833,
+   "recall": 1.0
   },
   "pending_processing": {
    "support": 2,
@@ -96,8 +96,7 @@
    "failed_low_balance": 2
   },
   "failed_autopay_issue": {
-   "failed_autopay_issue": 4,
-   "failed_low_balance": 1
+   "failed_autopay_issue": 5
   },
   "pending_processing": {
    "pending_processing": 2
@@ -133,7 +132,7 @@
    "expected": "out_of_scope",
    "got": "failed_autopay_issue",
    "model_category": "failed_autopay_issue",
-   "confidence": 0.93,
+   "confidence": 0.95,
    "evidence_span": "autopay ka jab khud hi pay krna pdta hai",
    "span_found": true,
    "decided_by": "model",
@@ -142,26 +141,12 @@
    "why": "model picked another category"
   },
   {
-   "id": "g21",
-   "text": "SIPs missed many times even with having the required balance before the due date.",
-   "expected": "failed_autopay_issue",
-   "got": "failed_low_balance",
-   "model_category": "failed_low_balance",
-   "confidence": 0.85,
-   "evidence_span": "SIPs missed",
-   "span_found": true,
-   "decided_by": "model",
-   "fallback_reason": null,
-   "notes": "flag: balance was there so likely mandate; vs failed_low_balance | PM: not sure how it is missed they didnt mention with specifics",
-   "why": "model picked another category"
-  },
-  {
    "id": "g26",
    "text": "I want stop my Elss sip because there no option to reduce amount so can I stop current and need to start new with lesser amount?",
    "expected": "wants_break",
    "got": "considering_stop",
    "model_category": "considering_stop",
-   "confidence": 0.9,
+   "confidence": 0.95,
    "evidence_span": "can I stop current",
    "span_found": true,
    "decided_by": "model",
@@ -181,7 +166,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "pending_processing",
-   "confidence": 0.85,
+   "confidence": 0.88,
    "evidence_span": "app said pending",
    "span_found": true,
    "decided_by": "model",
@@ -226,7 +211,7 @@
    "fallback_reason": null,
    "model_category": "debited_not_reflected",
    "confidence": 0.99,
-   "evidence_span": "Money left my bank but did not show",
+   "evidence_span": "Money left my bank but did not show in the app",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -269,7 +254,7 @@
    "outcome": "decline",
    "fallback_reason": null,
    "model_category": "advice_request",
-   "confidence": 0.98,
+   "confidence": 0.99,
    "evidence_span": "suggest a sip",
    "span_found": true,
    "decided_by": "model",
@@ -292,7 +277,7 @@
    "fallback_reason": null,
    "model_category": "advice_request",
    "confidence": 0.99,
-   "evidence_span": "Suggest some good funds / segments",
+   "evidence_span": "Suggest some good funds",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -336,7 +321,7 @@
    "fallback_reason": null,
    "model_category": "advice_request",
    "confidence": 0.99,
-   "evidence_span": "assistance in picking SIPs",
+   "evidence_span": "picking SIPs early ... insights on market trends and recc moves to make",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -357,8 +342,8 @@
    "outcome": "decline",
    "fallback_reason": null,
    "model_category": "returns_question",
-   "confidence": 0.98,
-   "evidence_span": "returns after a specific year",
+   "confidence": 0.95,
+   "evidence_span": "what is returns after a specific year",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -445,8 +430,8 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "debited_not_reflected",
-   "confidence": 0.99,
-   "evidence_span": "payment is failed but my money is debited",
+   "confidence": 0.98,
+   "evidence_span": "money is debited",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -556,7 +541,7 @@
    "fallback_reason": null,
    "model_category": "failed_autopay_issue",
    "confidence": 0.85,
-   "evidence_span": "mandate nhi aate",
+   "evidence_span": "mandate nhi aate time pr",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -577,7 +562,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_autopay_issue",
-   "confidence": 0.93,
+   "confidence": 0.95,
    "evidence_span": "autopay ka jab khud hi pay krna pdta hai",
    "span_found": true,
    "decided_by": "model",
@@ -599,7 +584,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_low_balance",
-   "confidence": 0.85,
+   "confidence": 0.9,
    "evidence_span": "SIP payment nahi ho pa raha hai",
    "span_found": true,
    "decided_by": "model",
@@ -616,13 +601,13 @@
    "text": "SIPs missed many times even with having the required balance before the due date.",
    "source": "playstore_659f217df885",
    "expected": "failed_autopay_issue",
-   "got": "failed_low_balance",
-   "correct": false,
+   "got": "failed_autopay_issue",
+   "correct": true,
    "outcome": "answer",
    "fallback_reason": null,
-   "model_category": "failed_low_balance",
-   "confidence": 0.85,
-   "evidence_span": "SIPs missed",
+   "model_category": "failed_autopay_issue",
+   "confidence": 0.95,
+   "evidence_span": "missed many times even with having the required balance",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -666,7 +651,7 @@
    "fallback_reason": null,
    "model_category": "debited_not_reflected",
    "confidence": 0.98,
-   "evidence_span": "amount has been debited from bank but is showing transaction failed",
+   "evidence_span": "amount has been debited from bank",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -709,8 +694,8 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "wants_break",
-   "confidence": 0.9,
-   "evidence_span": "pause option",
+   "confidence": 0.95,
+   "evidence_span": "pause",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -731,7 +716,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "considering_stop",
-   "confidence": 0.9,
+   "confidence": 0.95,
    "evidence_span": "can I stop current",
    "span_found": true,
    "decided_by": "model",
@@ -797,8 +782,8 @@
    "outcome": "decline",
    "fallback_reason": null,
    "model_category": "returns_question",
-   "confidence": 0.94,
-   "evidence_span": "return kaise calculate hoga",
+   "confidence": 0.95,
+   "evidence_span": "usme return kaise calculate hoga",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -842,7 +827,7 @@
    "fallback_reason": "out_of_scope",
    "model_category": "out_of_scope",
    "confidence": 1.0,
-   "evidence_span": "weather in Bangalore tomorrow",
+   "evidence_span": "what's the weather in Bangalore tomorrow",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -876,5 +861,5 @@
    "notes": "very short"
   }
  ],
- "corrections_note": "PM hand-labelled all 32 rows on 9 Nov 2026 before scoring, changing 2 of Claude's draft labels. g19 (\"kya matlab autopay ka jab khud hi pay krna pdta hai\"): failed_autopay_issue → out_of_scope. The person is basically asking what AutoPay is and how it works. That is fundamentally different from an AutoPay issue, which I defined as a failure of the mandate: the user blames AutoPay / mandate / NACH because it's not set up, not approved, not working, or the bank changed. The model still reads g19 as an AutoPay issue, so it remains one of the 3 misses. g28: first labelled out_of_scope, then changed back to considering_stop after reviewing the first scored run: the person asks whether stopping the SIP keeps them invested, which the 'Should I stop my SIP?' answer covers (cancelling only stops future instalments; invested money stays invested). Earlier fix found by the first eval run: the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns … aren't guaranteed\", so returns questions fell to the fallback; the filter now blocks only un-negated 'guaranteed' and a test covers it."
+ "corrections_note": "PM hand-labelled all 32 rows on 9 Nov 2026 before scoring, changing 2 of Claude's draft labels. g19 (\"kya matlab autopay ka jab khud hi pay krna pdta hai\"): failed_autopay_issue → out_of_scope. The person is basically asking what AutoPay is and how it works. That is fundamentally different from an AutoPay issue, which I defined as a failure of the mandate: the user blames AutoPay / mandate / NACH because it's not set up, not approved, not working, or the bank changed. The model still reads g19 as an AutoPay issue, so it remains one of the 3 misses. g28: first labelled out_of_scope, then changed back to considering_stop after reviewing the first scored run: the person asks whether stopping the SIP keeps them invested, which the 'Should I stop my SIP?' answer covers (cancelling only stops future instalments; invested money stays invested). Earlier fix found by the first eval run: the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns … aren't guaranteed\", so returns questions fell to the fallback; the filter now blocks only un-negated 'guaranteed' and a test covers it. Prompt change after edge-case testing (classify-v3, PM-approved): (A) if the user says the balance was there, the AI no longer picks low balance – this fixed g21; (B) mixed messages are labelled by what needs action first (advice > money already debited > bank fine > a direct 'should I stop?' > this instalment failed/pending > a break). Re-run: 30/32, declines 7/7, 0 violations."
 }

@@ -23,7 +23,7 @@ EVAL_PATH = ROOT / "outputs" / "mvp_eval.json"
 MODEL = os.environ.get("SIP_HELP_MODEL", "gemini-3.8-flash")
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 CONFIDENCE_MIN = 0.7
-PROMPT_VERSION = "classify-v2"  # v2 adds break_option (which change a wants_break user asked for)
+PROMPT_VERSION = "classify-v3"  # v2: break_option; v3: "had enough balance" rule + priority for mixed messages
 BREAK_OPTIONS = ["skip", "reduce", "change_date", "none"]
 
 CATEGORIES = list(TEMPLATES["labels"].keys())
@@ -96,6 +96,18 @@ Categories:
 - advice_request: asks which fund / SIP / stock / sector to pick, best fund, market tips, future trends, recommendations. Use this even if the message also mentions a payment problem.
 - returns_question: asks what returns they will get, projections, how much money after N years.
 - out_of_scope: anything else (not about their SIP payment, greetings, unrelated topics, gibberish).
+
+If they say the money / balance was there (enough balance, sufficient funds) and it still failed, use failed_autopay_issue,
+not failed_low_balance: low balance is ruled out by their own words. (A bank fine still means bank_charge.)
+
+When a message mentions more than one thing, pick what needs action first, in this order:
+1. Any request for fund picks, advice or returns -> advice_request / returns_question.
+2. Money already left the bank (debited, deducted, debited twice) -> debited_not_reflected.
+3. The bank charged a fine or fee -> bank_charge.
+4. They directly ask whether to stop or cancel the SIP -> considering_stop (answer the question they asked).
+5. This instalment failed or is pending -> failed_low_balance / failed_autopay_issue / pending_processing, even if they also
+   ask to skip, reduce or change the date for later months (that answer already offers those options).
+6. Otherwise wants_break.
 
 Messages may be in English, Hindi written in Latin script (Hinglish), or messy text. Examples:
 "paisa kat gaya par sip nahi dikha" -> debited_not_reflected; "bank cut 590" -> bank_charge;
