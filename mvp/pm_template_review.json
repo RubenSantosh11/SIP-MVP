@@ -119,7 +119,7 @@
     {
       "line": "Source swap",
       "answer": "Reduce amount / change date",
-      "before": "Cited can-i-change-my-sip-amount-2",
+      "before": "Cited a Groww help page that had no readable answer text",
       "after": "Dropped: the page had no readable answer text. Replaced with Groww's blog, which shows the steps. Only pages we could read are cited.",
       "sources": [
         "https://groww.in/blog/how-to-edit-sip-on-groww"

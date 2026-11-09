@@ -4,57 +4,75 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SIP Back on Track</title>
-<meta name="description" content="Concept prototype: helps a first-year SIP investor understand a failed or pending instalment and what they can do next.">
+<meta name="description" content="Concept prototype: reaches a first-year SIP investor when an instalment fails, explains why, and shows the fix while it's still open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="topbar"><div class="in">
-  <a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="7" fill="var(--accent)"/><path d="M6 17.5 L11 12.5 L14 15.5 L20 9.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9.5 H20 V13.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>SIP Back on Track</a>
-  <nav><a href="#ask">Get help</a><a href="#eval">Eval</a></nav>
-</div></div>
-<main class="wrap">
-  <header class="hero">
-    <span class="tag">Concept prototype</span>
-    <h1>Get your SIP back on track</h1>
-    <p class="lede">Instalment failed or stuck on pending? Tell us what you see. We'll explain what most likely happened and what you can do next.</p>
-    <p class="notice">Concept prototype for a Groww-style app. Not affiliated with Groww. The SIP below is fictional.</p>
-    <p id="safeBanner" class="notice safe" hidden>Safe mode: quality check not passed. Tap an option below for an answer; typed questions get links to official help.</p>
+<main class="app">
+  <header class="top">
+    <a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="7" fill="var(--accent)"/><path d="M6 17.5 L11 12.5 L14 15.5 L20 9.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9.5 H20 V13.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>SIP Back on Track</a>
+    <p class="tagline">A concept for Groww's SIP section · not affiliated with Groww · not investment advice</p>
   </header>
 
-  <section class="card" aria-label="Your SIP (fictional)">
-    <div class="sip">
-      <span class="sipicon"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 14 L8 9 L11 12 L17 6" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <span class="name">Monthly SIP · ₹1,000 on the 5th</span>
-      <span class="status">Status: Pending</span>
-      <span class="muted small">Example fund (fictional) · Instalment for 5 Nov</span>
+  <section class="scen" aria-label="Try a scenario">
+    <div class="seg" role="radiogroup" aria-label="Scenario" id="seg">
+      <button role="radio" aria-checked="true" data-s="failed">Failed: low balance</button>
+      <button role="radio" aria-checked="false" data-s="pending">Pending for days</button>
+      <button role="radio" aria-checked="false" data-s="fine">Bank charged a fine</button>
+    </div>
+    <p class="hint" id="demoDate"></p>
+  </section>
+
+  <section id="stageNotif" aria-label="Notification">
+    <button class="notif" id="notif" aria-describedby="notifHint">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="7" fill="var(--accent)"/><path d="M6 17.5 L11 12.5 L14 15.5 L20 9.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9.5 H20 V13.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="meta"><b>Mutual funds · SIP</b><span>now</span></span>
+      <span class="msg" id="notifMsg"></span>
+    </button>
+    <p class="hint" id="notifHint" style="margin-top:8px">Tap the notification</p>
+  </section>
+
+  <section id="stageSip" class="card" hidden aria-labelledby="sipTitle">
+    <div class="sip-head">
+      <div><p class="fund" id="sipTitle">Example fund (fictional)</p><p class="small muted">Monthly SIP · ₹1,000 · instalment for 5 Nov</p></div>
+      <span class="status" id="sipStatus"></span>
+    </div>
+    <button class="btn" id="whatBtn">What happened?</button>
+    <div class="known" aria-label="What we know about this SIP">
+      <div class="row"><strong>What we know about this SIP</strong><span class="tag">Example data</span></div>
+      <ul><li>AutoPay active</li><li>Last 2 instalments failed near the 5th</li><li>SIP date: 5th of the month</li></ul>
+      <p class="suggest">Moving your SIP date a few days later might suit you better (Edit SIP or Change Amount/Date).</p>
     </div>
   </section>
 
-  <section class="card" id="ask" aria-label="Ask">
-    <label for="q"><h3>What do you see?</h3></label>
-    <textarea id="q" maxlength="600" placeholder="e.g. 'pending since Monday', 'bank cut 590', 'paisa kat gaya par SIP nahi dikha'"></textarea>
-    <div class="row"><button id="ask" class="btn">Get help</button><span id="status" class="muted small" aria-live="polite"></span></div>
-    <div>
-      <p class="muted small" style="margin-bottom:6px">Or tap one:</p>
-      <div id="chips" class="row"></div>
-    </div>
-  </section>
+  <section id="result" class="card" hidden aria-live="polite" tabindex="-1"></section>
 
-  <section id="result" class="card" hidden aria-live="polite"></section>
-
-  <section id="eval" class="card" aria-labelledby="evalh">
-    <h2 id="evalh">Eval: how we check the answers</h2>
-    <div id="evalBody"><p class="muted">Loading…</p></div>
+  <section id="askBox" class="card" hidden aria-labelledby="askTitle">
+    <label for="q"><h3 id="askTitle">Ask anything else about this payment</h3></label>
+    <p id="safeNote" class="note" hidden>Typed questions are paused while answers are being checked. Tap an option below for now.</p>
+    <textarea id="q" maxlength="600" placeholder="e.g. 'bank cut 590', 'paisa kat gaya par SIP nahi dikha'"></textarea>
+    <button class="btn slim" id="ask">Ask</button>
+    <p id="askStatus" class="small muted" aria-live="polite"></p>
+    <div><p class="small muted" style="margin-bottom:6px">Or tap one:</p><div class="chips" id="chips"></div></div>
   </section>
 
   <footer>
-    <p><strong>Not investment advice. This assistant explains what's happening with your SIP; it doesn't recommend funds.</strong></p>
-    <p>Facts come from public help pages (linked under each answer). Wording is hedged: check in your app for your own SIP.</p>
-    <p>Part of a Nextleap PM project. Research and discovery: <a href="https://sip-engine-git-claude-zealous-mccarthy-db9vgg-ruben-af8e.vercel.app/">Part 1 – Why first-time SIP investors stop</a>.</p>
+    <p><strong>Not investment advice.</strong> This assistant explains what's happening with your SIP; it doesn't recommend funds.</p>
+    <p><a href="eval.html">How we check the answers</a> · <a href="https://sip-engine-git-claude-zealous-mccarthy-db9vgg-ruben-af8e.vercel.app/">Part 1 – Why first-time SIP investors stop</a></p>
   </footer>
 </main>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+  <div class="in">
+    <div class="grab"></div>
+    <h2 id="sheetTitle">Concept prototype</h2>
+    <p id="sheetText"></p>
+    <p class="small muted">Nothing is paid or changed here.</p>
+    <button class="btn" id="sheetClose">Got it</button>
+  </div>
+</dialog>
 <script src="app.js"></script>
 </body>
 </html>
