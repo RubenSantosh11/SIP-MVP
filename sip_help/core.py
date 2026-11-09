@@ -193,6 +193,7 @@ def render(key: str) -> dict:
     }
     if t["kind"] in ("fallback", "decline"):
         out["help_links"] = FACTS["help_links"]
+        out["general_help_links"] = FACTS.get("general_help_links", [])
     return out
 
 

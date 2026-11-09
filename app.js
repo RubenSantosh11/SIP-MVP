@@ -39,7 +39,7 @@ const sameDay = (a, b) => a.toDateString() === b.toDateString();
 
 // Split template text into its first sentence and the rest (layout only; wording untouched).
 function split(s) {
-  const m = String(s || "").match(/^(.+?[.!?])\s+(?=[A-Z'"(])/);
+  const m = String(s || "").match(/^(.+?(?<!\be\.g|\bi\.e)[.!?])\s+(?=[A-Z'"(])/);
   return m ? [m[1], s.slice(m[0].length)] : [String(s || ""), ""];
 }
 
@@ -103,7 +103,7 @@ function badge() {
 
 // The path line is the sentence with the in-app path (→); every other sentence goes under "How it works".
 function pathAndMore(where) {
-  const parts = String(where || "").split(/(?<=[.!?])\s+(?=[A-Z'"(])/);
+  const parts = String(where || "").split(/(?<=[.!?])(?<!\be\.g\.|\bi\.e\.)\s+(?=[A-Z'"(])/);
   let i = parts.findIndex((x) => x.includes("→"));
   if (i < 0) i = 0;
   return [parts[i], parts.filter((_, j) => j !== i).join(" ")];
@@ -150,14 +150,24 @@ function render(r, text) {
     h += `<div class="in" style="display:flex;flex-direction:column;gap:12px">${a.actions.map(stepHTML).join("")}</div>`;
     if (a.next) h += `<p class="next">${esc(a.next)}</p>`;
   }
-  if (a.kind !== "answer") h += `<div class="chips" data-chips></div>`;
-  const links = a.help_links || a.sources.map((x) => ({ label: SOURCE_TITLES[x] || x.replace(/^https:\/\/(www\.)?/, ""), url: x }));
-  const gtk = a.good_to_know || [];
-  h += `<details><summary>Where this comes from</summary><div class="in">`;
-  if (gtk.length) h += `<div><h3>Good to know</h3><ul class="plain">${gtk.map((g) => `<li>${esc(g)}</li>`).join("")}</ul></div>`;
-  h += `<div><h3>Sources</h3><ul class="plain">${links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join("")}</ul></div>`;
-  h += `<p class="small muted">Facts come from public help pages. Check in your app for your own SIP.</p></div></details>`;
-  h += `<div class="qc"><span>${quality(r)}</span><span>${badge()}</span></div>`;
+  const li = (l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`;
+  if (a.kind !== "answer") {
+    // Fallback / decline: reliable places to go, shown openly (not collapsed).
+    let g = `<div class="help"><h3>Get a reliable answer</h3><ul class="plain">`;
+    if (text) g += `<li><a href="https://www.google.com/search?q=${encodeURIComponent("site:groww.in/help " + text)}" target="_blank" rel="noopener">Search Groww's help pages for “${esc(text.length > 60 ? text.slice(0, 57) + "…" : text)}”</a> <span class="muted small">(opens Google)</span></li>`;
+    g += (a.general_help_links || []).map(li).join("") + `</ul>`;
+    if ((a.help_links || []).length) g += `<p class="small muted" style="margin-top:8px">If it's about a SIP payment:</p><ul class="plain">${a.help_links.map(li).join("")}</ul>`;
+    h += g + `</div><div class="chips" data-chips></div>`;
+  } else {
+    const links = a.sources.map((x) => ({ label: SOURCE_TITLES[x] || x.replace(/^https:\/\/(www\.)?/, ""), url: x }));
+    const gtk = a.good_to_know || [];
+    h += `<details><summary>Where this comes from</summary><div class="in">`;
+    if (gtk.length) h += `<div><h3>Good to know</h3><ul class="plain">${gtk.map((g) => `<li>${esc(g)}</li>`).join("")}</ul></div>`;
+    h += `<div><h3>Sources</h3><ul class="plain">${links.map(li).join("")}</ul></div>`;
+    h += `<p class="small muted">Facts come from public help pages. Check in your app for your own SIP.</p></div></details>`;
+  }
+  // Typed questions already show "How the AI read your message" at the top, so only the badge here.
+  h += `<div class="qc">${text ? "" : `<span>${quality(r)}</span>`}<span>${badge()}</span></div>`;
   el.innerHTML = h; el.hidden = false;
   el.querySelectorAll("[data-sheet]").forEach((b) => b.addEventListener("click", () => openSheet(b.dataset.sheet)));
   el.querySelectorAll("[data-chips]").forEach(renderChips);

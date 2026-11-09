@@ -106,5 +106,19 @@
       "label": "What are ECS / bounce charges? (Groww help)",
       "url": "https://groww.in/help/mutual-funds/mf-autopay/what-are-ecs-charges--96"
     }
+  ],
+  "general_help_links": [
+    {
+      "label": "Groww Help & Support (all topics)",
+      "url": "https://groww.in/help"
+    },
+    {
+      "label": "Mutual funds help topics (Groww)",
+      "url": "https://groww.in/help/mutual-funds"
+    },
+    {
+      "label": "SIP help topics (Groww)",
+      "url": "https://groww.in/help/mutual-funds/mf-sip"
+    }
   ]
 }
