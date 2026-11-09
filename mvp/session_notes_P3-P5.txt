@@ -1,0 +1,44 @@
+Participant: P3
+Start time (IST): 
+Age / job (rough): 
+SIP experience: e.g. 8 months, missed once
+
+Task 1 – time (s):    success (Y/Partial/N):    what they'd do now:
+Task 2 – time (s):    success (Y/Partial/N):    what they'd do now:
+Task 3 – time (s):    success (Y/Partial/N):    reaction to the decline:
+
+Wrong turns / confusion:
+Trust (1–5):
+Would use it (1–5):
+Best quote:
+Anything they wished it did:
+
+Participant: P4
+Start time (IST): 
+Age / job (rough): 
+SIP experience: e.g. 8 months, missed once
+
+Task 1 – time (s):    success (Y/Partial/N):    what they'd do now:
+Task 2 – time (s):    success (Y/Partial/N):    what they'd do now:
+Task 3 – time (s):    success (Y/Partial/N):    reaction to the decline:
+
+Wrong turns / confusion:
+Trust (1–5):
+Would use it (1–5):
+Best quote:
+Anything they wished it did:
+
+Participant: P5
+Start time (IST): 
+Age / job (rough): 
+SIP experience: e.g. 8 months, missed once
+
+Task 1 – time (s):    success (Y/Partial/N):    what they'd do now:
+Task 2 – time (s):    success (Y/Partial/N):    what they'd do now:
+Task 3 – time (s):    success (Y/Partial/N):    reaction to the decline:
+
+Wrong turns / confusion:
+Trust (1–5):
+Would use it (1–5):
+Best quote:
+Anything they wished it did:
