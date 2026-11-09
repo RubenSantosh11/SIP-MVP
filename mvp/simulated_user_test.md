@@ -158,3 +158,11 @@ Ordered by impact on the Part 4 problem (recovering the instalment in time).
 | 4. Shorter, warmer decline | **Done** | About 150–160 words (was about 215), 3 Groww help links (was 8). The first step is now "To see how your own SIP is doing, open it in the app". |
 
 Eval after the changes: **31/32 (97%)**, advice declined 7/7, 0 filter violations, gate passed. The Part 6 dry run with 5 simulated participants on the updated build is in `part6_test_script.md`.
+
+## 12. First real participant (P1) and a future-work item
+
+The PM ran the three Part 6 tasks with one real participant (a friend) on 9 Nov 2026: **3/3 tasks succeeded, trust 4/5, "It's a nice service."** The date on the Pay now button, "Other options" and Good to know were called out as useful, and the break answer was "very direct and to the point".
+
+On Task 3 he accepted the decline ("it makes sense, it's a SIP payment helper") but would have liked a video for his question. That's the first real signal behind the "where do I ask, then?" risk in this simulated test.
+
+**Future work (out of MVP scope):** after a decline, offer a neutral, reviewed learning link, e.g. an official or investor-education video on how to compare funds. It must never be chosen based on the user's specific fund question. It's out of scope now because content inside a video can't be checked by the output filter and could name funds or hint at returns.

@@ -91,9 +91,9 @@
 ## Results – real participants (fill in)
 | Participant | Task | Typed / chip (what they typed) | Time to answer (s) | Success (Y / Partial / N) | Wrong turns | Category shown correct? | Trust (1–5) | Notable quote |
 |---|---|---|---|---|---|---|---|---|
-| P1 | 1 | | | | | | | |
-| P1 | 2 | | | | | | | |
-| P1 | 3 | | | | | | | |
+| P1 | 1 | Notification → "What happened?" (found the notification and preset options useful) | Not timed. "Quite fast" | Y | None reported | Y | 4 | Found the date on the Pay now button useful, along with "Other options" |
+| P1 | 2 | Preset option / typed | Not timed. "Quite fast" | Y | None reported | Y | 4 | "Very direct and to the point"; the Good to know section was especially useful |
+| P1 | 3 | Typed: asked which fund to buy | Not timed. "Quite fast" | Y (declined, no fund suggested) | None | Y | 4 | "It's fine since it's a SIP payment helper, it makes sense", but in the moment would have liked a video for his query. Overall: **"It's a nice service."** |
 | P2 | 1 | | | | | | | |
 | P2 | 2 | | | | | | | |
 | P2 | 3 | | | | | | | |
@@ -107,4 +107,12 @@
 | P5 | 2 | | | | | | | |
 | P5 | 3 | | | | | | | |
 
-**Summary to compute:** task success rate per task; median time to answer; % of typed inputs understood without fallback; decline rate on Task 3 (target 100%); average trust; top 3 issues with frequency.
+**Summary so far (1 real participant, P1, tested 9 Nov 2026):**
+- **Task success:** Task 1 1/1 · Task 2 1/1 · Task 3 1/1 (declined; no fund suggested).
+- **Time:** not timed; P1 said responses were "quite fast".
+- **Wrong turns:** none reported.
+- **Trust:** 4/5.
+- **What helped:** the notification and preset options, the date on the Pay now button, "Other options", the direct skip/break answer, and Good to know.
+- **Unmet need:** after the decline, P1 would have liked a video for his query. He agreed the decline makes sense for a SIP payment helper. Logged as future work, out of MVP scope (recommendation risk).
+
+**Summary to compute when all 5 are done:** task success rate per task; median time to answer; % of typed inputs understood without fallback; decline rate on Task 3 (target 100%); average trust; top 3 issues with frequency.
