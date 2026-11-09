@@ -65,7 +65,12 @@ function payWindow() {
   const sc = SCENARIOS[scen], cutoff = addWorkingDays(FAILED_ON, 2);
   return { open: sc.today <= cutoff, cutoff, today: sc.today };
 }
-function plan(cat, actions) {
+const BREAK = {
+  skip: { i: 0, label: "Skip next instalment", sheet: "This would open Edit SIP → Skip instalment for this SIP.", read: "skip an instalment" },
+  reduce: { i: 1, label: "Reduce the amount", sheet: "This would open Edit SIP / Change Amount/Date to lower the amount.", read: "reduce the amount" },
+  change_date: { i: 2, label: "Change the SIP date", sheet: "This would open Edit SIP / Change Amount/Date to pick a new date.", read: "change the SIP date" },
+};
+function plan(cat, actions, u = {}) {
   const w = payWindow();
   const until = sameDay(w.cutoff, w.today) ? `today, ${fmt(w.cutoff)}` : fmt(w.cutoff);
   const pay = (i) => ({ i, label: w.open ? `Pay now (open until ${until})` : "Pay for this month (one-time)",
@@ -75,7 +80,7 @@ function plan(cat, actions) {
     case "bank_charge": return pay(1);
     case "failed_autopay_issue": return { i: 0, label: "Check AutoPay", sheet: "This would open the AutoPay details for this SIP." };
     case "debited_not_reflected": return { i: 0, label: "Check order status", sheet: "This would open the order history for this SIP." };
-    case "wants_break": return { i: 0, label: "Skip next instalment", sheet: "This would open Edit SIP → Skip instalment for this SIP." };
+    case "wants_break": return BREAK[u.break_option] || null; // unclear which change → show all options equally
     default: return null; // considering_stop, declines and fallback: no single recommended action
   }
 }
@@ -122,14 +127,14 @@ function aiReadHTML(r, text) {
   let h = `<div class="read"><span class="lbl"><span class="ai-tag">AI</span>How the AI read your message</span><q>${highlight(text, u.evidence_span)}</q>`;
   if (u.decided_by === "safe_mode") h += `<span>The AI is switched off until its quality check passes, so here are reliable places to look.</span>`;
   else if (!u.category) h += `<span>It wasn't sure enough to answer (${esc({ low_confidence: "low confidence", span_not_found: "it couldn't point to the words it relied on", out_of_scope: "this doesn't look like a SIP payment question", model_unavailable: "it didn't respond", rate_limited: "too many questions this hour" }[r.fallback_reason] || "unclear")}), so here are reliable places to look instead of a guess.</span>`;
-  else h += `<span class="arrow">→ <strong>${esc(u.label)}</strong> · ${confWord(u.confidence ?? 0)} confidence${u.evidence_span ? " · the highlighted words are what it relied on" : ""}</span>`;
+  else h += `<span class="arrow">→ <strong>${esc(u.label)}</strong>${BREAK[u.break_option] && u.category === "wants_break" ? ` · you asked to <strong>${BREAK[u.break_option].read}</strong>` : ""} · ${confWord(u.confidence ?? 0)} confidence${u.evidence_span ? " · the highlighted words are what it relied on" : ""}</span>`;
   return h + `</div>`;
 }
 
 function render(r, text) {
   const a = r.answer, u = r.understood, el = $("result");
   const [head, rest] = split(a.happened);
-  const p = a.kind === "answer" ? plan(u.category, a.actions) : null;
+  const p = a.kind === "answer" ? plan(u.category, a.actions, u) : null;
   let h = text ? aiReadHTML(r, text) : "";
   h += `<p class="headline">${esc(head)}</p>`;
   if (rest) h += `<p class="sub">${esc(rest)}</p>`;

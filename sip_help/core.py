@@ -23,7 +23,8 @@ EVAL_PATH = ROOT / "outputs" / "mvp_eval.json"
 MODEL = os.environ.get("SIP_HELP_MODEL", "gemini-3.8-flash")
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 CONFIDENCE_MIN = 0.7
-PROMPT_VERSION = "classify-v1"
+PROMPT_VERSION = "classify-v2"  # v2 adds break_option (which change a wants_break user asked for)
+BREAK_OPTIONS = ["skip", "reduce", "change_date", "none"]
 
 CATEGORIES = list(TEMPLATES["labels"].keys())
 LABELS = TEMPLATES["labels"]
@@ -100,7 +101,11 @@ Messages may be in English, Hindi written in Latin script (Hinglish), or messy t
 "paisa kat gaya par sip nahi dikha" -> debited_not_reflected; "bank cut 590" -> bank_charge;
 "sip pending hai since monday" -> pending_processing; "kaunsa fund best hai" -> advice_request.
 
-Return: {"category": <one category id>, "confidence": <0..1>, "evidence_span": <the shortest exact substring of the message, copied character for character, that justifies the category>}"""
+Also set break_option: if the category is wants_break, say which change they asked for:
+"skip" (skip or pause an instalment or month), "reduce" (lower the amount), "change_date" (move the SIP / debit date),
+or "none" if they didn't say which or asked for several. For every other category use "none".
+
+Return: {"category": <one category id>, "confidence": <0..1>, "evidence_span": <the shortest exact substring of the message, copied character for character, that justifies the category>, "break_option": <skip|reduce|change_date|none>}"""
 
 
 class ModelUnavailable(Exception):
@@ -127,8 +132,9 @@ def call_model(text: str, retries: int = 2) -> dict:
                     "category": {"type": "STRING", "enum": CATEGORIES},
                     "confidence": {"type": "NUMBER"},
                     "evidence_span": {"type": "STRING"},
+                    "break_option": {"type": "STRING", "enum": BREAK_OPTIONS},
                 },
-                "required": ["category", "confidence", "evidence_span"],
+                "required": ["category", "confidence", "evidence_span", "break_option"],
             },
         },
     }
@@ -224,7 +230,7 @@ def help_for(text: str = "", chip: str | None = None, safe_mode: bool | None = N
     if safe_mode is None:
         safe_mode = not gate_status()["passed"]
     text = (text or "").strip()
-    understood = {"category": None, "label": None, "confidence": None, "evidence_span": None,
+    understood = {"category": None, "label": None, "confidence": None, "evidence_span": None, "break_option": None,
                   "span_found": None, "decided_by": None, "model_category": None}
     reason = None
 
@@ -232,7 +238,8 @@ def help_for(text: str = "", chip: str | None = None, safe_mode: bool | None = N
         cat = CHIPS.get(chip)
         if not cat:
             return {"error": "unknown chip"}
-        understood.update(category=cat, confidence=1.0, decided_by="chip")
+        understood.update(category=cat, confidence=1.0, decided_by="chip",
+                          break_option="skip" if cat == "wants_break" else None)
     elif safe_mode:
         cat, reason = None, "safe_mode"
         understood.update(decided_by="safe_mode")
@@ -244,6 +251,8 @@ def help_for(text: str = "", chip: str | None = None, safe_mode: bool | None = N
             conf = float(m.get("confidence") or 0)
             span = str(m.get("evidence_span") or "")
             found = span_found(span, text)
+            bo = m.get("break_option") if m.get("break_option") in BREAK_OPTIONS else "none"
+            understood.update(break_option=bo if mcat == "wants_break" else None)
             understood.update(model_category=mcat, confidence=round(conf, 2), evidence_span=span, span_found=found,
                               decided_by="model")
             cat = mcat
