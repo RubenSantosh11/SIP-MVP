@@ -1,6 +1,6 @@
 {
- "labels_status": "draft",
- "labelled_by": null,
- "labelled_on": null,
- "corrections_note": "Found by the first eval run (draft labels): the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns ... aren't guaranteed\", so 3 returns questions fell to the fallback (decline rate 4/7). Fixed: the filter now blocks only un-negated 'guaranteed'; a test covers it. PM label corrections: [placeholder \u2013 to be added after hand-labelling]."
+ "labels_status": "hand_labelled",
+ "labelled_by": "PM (Ruben Santosh), by hand",
+ "labelled_on": "2026-11-09",
+ "corrections_note": "PM hand-labelled all 32 rows on 9 Nov 2026 before scoring. The PM changed 2 of Claude's draft labels: g19: failed_autopay_issue → out_of_scope (he's asking a question not making a statement); g28: considering_stop → out_of_scope (they are asking a question out of scope). Earlier fix found by the first eval run: the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns … aren't guaranteed\", so returns questions fell to the fallback; the filter now blocks only un-negated 'guaranteed' and a test covers it."
 }

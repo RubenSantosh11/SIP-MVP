@@ -1,13 +1,13 @@
 {
- "run_at": "2026-11-08 23:33 UTC",
+ "run_at": "2026-11-09 05:11 UTC",
  "model": "gemini-3.8-flash",
  "prompt_version": "classify-v1",
  "confidence_min": 0.7,
- "labelled_by": null,
+ "labelled_by": "PM (Ruben Santosh), by hand",
  "summary": {
   "n": 32,
-  "correct": 30,
-  "accuracy": 0.938,
+  "correct": 28,
+  "accuracy": 0.875,
   "decline_n": 7,
   "decline_ok": 7,
   "decline_rate": 1.0,
@@ -15,13 +15,13 @@
   "fallback_rate": 0.094,
   "filter_violations": 0,
   "filter_catches": 0,
-  "model_only_correct": 30,
-  "model_only_accuracy": 0.938,
+  "model_only_correct": 28,
+  "model_only_accuracy": 0.875,
   "decided_by": {
    "model": 32
   },
-  "labels_status": "draft",
-  "gate_passed": false
+  "labels_status": "hand_labelled",
+  "gate_passed": true
  },
  "gate": {
   "accuracy_min": 0.8,
@@ -37,10 +37,10 @@
    "recall": 1.0
   },
   "failed_autopay_issue": {
-   "support": 6,
+   "support": 5,
    "predicted": 5,
-   "precision": 1.0,
-   "recall": 0.833
+   "precision": 0.8,
+   "recall": 0.8
   },
   "pending_processing": {
    "support": 2,
@@ -67,9 +67,9 @@
    "recall": 0.5
   },
   "considering_stop": {
-   "support": 2,
+   "support": 1,
    "predicted": 3,
-   "precision": 0.667,
+   "precision": 0.333,
    "recall": 1.0
   },
   "advice_request": {
@@ -85,10 +85,10 @@
    "recall": 1.0
   },
   "out_of_scope": {
-   "support": 3,
+   "support": 5,
    "predicted": 3,
    "precision": 1.0,
-   "recall": 1.0
+   "recall": 0.6
   }
  },
  "confusion": {
@@ -96,7 +96,7 @@
    "failed_low_balance": 2
   },
   "failed_autopay_issue": {
-   "failed_autopay_issue": 5,
+   "failed_autopay_issue": 4,
    "failed_low_balance": 1
   },
   "pending_processing": {
@@ -113,7 +113,7 @@
    "considering_stop": 1
   },
   "considering_stop": {
-   "considering_stop": 2
+   "considering_stop": 1
   },
   "advice_request": {
    "advice_request": 4
@@ -122,22 +122,38 @@
    "returns_question": 3
   },
   "out_of_scope": {
+   "failed_autopay_issue": 1,
+   "considering_stop": 1,
    "out_of_scope": 3
   }
  },
  "failures": [
+  {
+   "id": "g19",
+   "text": "kya matlab autopay ka jab khud hi pay krna pdta hai",
+   "expected": "out_of_scope",
+   "got": "failed_autopay_issue",
+   "model_category": "failed_autopay_issue",
+   "confidence": 0.95,
+   "evidence_span": "autopay ka jab khud hi pay krna pdta hai",
+   "span_found": true,
+   "decided_by": "model",
+   "fallback_reason": null,
+   "notes": "Hinglish; flag: could be out_of_scope (complaint) | PM: he's asking a question not making a statement",
+   "why": "model picked another category"
+  },
   {
    "id": "g21",
    "text": "SIPs missed many times even with having the required balance before the due date.",
    "expected": "failed_autopay_issue",
    "got": "failed_low_balance",
    "model_category": "failed_low_balance",
-   "confidence": 0.85,
+   "confidence": 0.9,
    "evidence_span": "SIPs missed many times",
    "span_found": true,
    "decided_by": "model",
    "fallback_reason": null,
-   "notes": "flag: balance was there so likely mandate; vs failed_low_balance",
+   "notes": "flag: balance was there so likely mandate; vs failed_low_balance | PM: not sure how it is missed they didnt mention with specifics",
    "why": "model picked another category"
   },
   {
@@ -146,12 +162,26 @@
    "expected": "wants_break",
    "got": "considering_stop",
    "model_category": "considering_stop",
-   "confidence": 0.92,
+   "confidence": 0.85,
    "evidence_span": "can I stop current",
    "span_found": true,
    "decided_by": "model",
    "fallback_reason": null,
    "notes": "flag: wants_break (reduce) vs considering_stop",
+   "why": "model picked another category"
+  },
+  {
+   "id": "g28",
+   "text": "agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi",
+   "expected": "out_of_scope",
+   "got": "considering_stop",
+   "model_category": "considering_stop",
+   "confidence": 0.95,
+   "evidence_span": "SIP bund karna pade",
+   "span_found": true,
+   "decided_by": "model",
+   "fallback_reason": null,
+   "notes": "Hinglish, typos | PM: they are asking a question out of scope",
    "why": "model picked another category"
   }
  ],
@@ -176,7 +206,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "flag: failed_low_balance vs pending_processing"
+   "notes": "flag: failed_low_balance vs pending_processing | PM: it says installment failed but the app is showing pending"
   },
   {
    "id": "g02",
@@ -242,7 +272,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "flag: bank_charge vs failed_low_balance"
+   "notes": "flag: bank_charge vs failed_low_balance | PM: yes the bank charged them a fine but the reason that caused that is fund shortage"
   },
   {
    "id": "g05",
@@ -277,7 +307,7 @@
    "fallback_reason": null,
    "model_category": "advice_request",
    "confidence": 0.99,
-   "evidence_span": "Suggest some good funds / segments",
+   "evidence_span": "Suggest some good funds",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -484,7 +514,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "flag: bank_charge vs failed_autopay_issue"
+   "notes": "flag: bank_charge vs failed_autopay_issue | PM: They received a bank charge because they tried to do an auto-debit with improper balance in the account"
   },
   {
    "id": "g16",
@@ -496,7 +526,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_autopay_issue",
-   "confidence": 0.95,
+   "confidence": 0.9,
    "evidence_span": "UPI mandates are not working",
    "span_found": true,
    "decided_by": "model",
@@ -506,7 +536,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "flag: vs pending_processing"
+   "notes": "flag: vs pending_processing | PM: It mentions orders under processing as well but not the primary cause"
   },
   {
    "id": "g17",
@@ -540,7 +570,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_autopay_issue",
-   "confidence": 0.95,
+   "confidence": 0.93,
    "evidence_span": "mandate nhi aate time pr",
    "span_found": true,
    "decided_by": "model",
@@ -556,9 +586,9 @@
    "id": "g19",
    "text": "kya matlab autopay ka jab khud hi pay krna pdta hai",
    "source": "playstore_7a8df7eb9f68",
-   "expected": "failed_autopay_issue",
+   "expected": "out_of_scope",
    "got": "failed_autopay_issue",
-   "correct": true,
+   "correct": false,
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_autopay_issue",
@@ -572,7 +602,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "Hinglish; flag: could be out_of_scope (complaint)"
+   "notes": "Hinglish; flag: could be out_of_scope (complaint) | PM: he's asking a question not making a statement"
   },
   {
    "id": "g20",
@@ -606,7 +636,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "failed_low_balance",
-   "confidence": 0.85,
+   "confidence": 0.9,
    "evidence_span": "SIPs missed many times",
    "span_found": true,
    "decided_by": "model",
@@ -616,7 +646,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "flag: balance was there so likely mandate; vs failed_low_balance"
+   "notes": "flag: balance was there so likely mandate; vs failed_low_balance | PM: not sure how it is missed they didnt mention with specifics"
   },
   {
    "id": "g22",
@@ -628,8 +658,8 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "pending_processing",
-   "confidence": 0.92,
-   "evidence_span": "pending SIP payment",
+   "confidence": 0.95,
+   "evidence_span": "queue of pending SIP payment",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -651,7 +681,7 @@
    "fallback_reason": null,
    "model_category": "debited_not_reflected",
    "confidence": 0.98,
-   "evidence_span": "amount has been debited from bank but is showing transaction failed",
+   "evidence_span": "debited from bank but is showing transaction failed",
    "span_found": true,
    "decided_by": "model",
    "filter": {
@@ -660,7 +690,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "messy spelling"
+   "notes": "messy spelling | PM: but it looks like the payment itself had an issue"
   },
   {
    "id": "g24",
@@ -672,7 +702,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "bank_charge",
-   "confidence": 0.98,
+   "confidence": 0.95,
    "evidence_span": "bank deducted fine",
    "span_found": true,
    "decided_by": "model",
@@ -694,7 +724,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "wants_break",
-   "confidence": 0.9,
+   "confidence": 0.95,
    "evidence_span": "pause",
    "span_found": true,
    "decided_by": "model",
@@ -704,7 +734,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": ""
+   "notes": "PM: technically he's missing the SIP control option of pause"
   },
   {
    "id": "g26",
@@ -716,7 +746,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "considering_stop",
-   "confidence": 0.92,
+   "confidence": 0.85,
    "evidence_span": "can I stop current",
    "span_found": true,
    "decided_by": "model",
@@ -738,7 +768,7 @@
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "considering_stop",
-   "confidence": 0.95,
+   "confidence": 0.98,
    "evidence_span": "close or stop sip",
    "span_found": true,
    "decided_by": "model",
@@ -754,13 +784,13 @@
    "id": "g28",
    "text": "agar aisa ho kabi ki mujge SIP bund karna pade to kya mai keval SIP bund kar k b invested reh skta hu ya nhi",
    "source": "youtube_d8a26db64fc8",
-   "expected": "considering_stop",
+   "expected": "out_of_scope",
    "got": "considering_stop",
-   "correct": true,
+   "correct": false,
    "outcome": "answer",
    "fallback_reason": null,
    "model_category": "considering_stop",
-   "confidence": 0.88,
+   "confidence": 0.95,
    "evidence_span": "SIP bund karna pade",
    "span_found": true,
    "decided_by": "model",
@@ -770,7 +800,7 @@
     "dropped_model_text": false,
     "violations": 0
    },
-   "notes": "Hinglish, typos"
+   "notes": "Hinglish, typos | PM: they are asking a question out of scope"
   },
   {
    "id": "g29",
@@ -782,7 +812,7 @@
    "outcome": "decline",
    "fallback_reason": null,
    "model_category": "returns_question",
-   "confidence": 0.95,
+   "confidence": 0.92,
    "evidence_span": "usme return kaise calculate hoga",
    "span_found": true,
    "decided_by": "model",
@@ -804,7 +834,7 @@
    "outcome": "fallback",
    "fallback_reason": "out_of_scope",
    "model_category": "out_of_scope",
-   "confidence": 1.0,
+   "confidence": 0.99,
    "evidence_span": "change my profile photo",
    "span_found": true,
    "decided_by": "model",
@@ -861,5 +891,5 @@
    "notes": "very short"
   }
  ],
- "corrections_note": "Found by the first eval run (draft labels): the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns ... aren't guaranteed\", so 3 returns questions fell to the fallback (decline rate 4/7). Fixed: the filter now blocks only un-negated 'guaranteed'; a test covers it. PM label corrections: [placeholder – to be added after hand-labelling]."
+ "corrections_note": "PM hand-labelled all 32 rows on 9 Nov 2026 before scoring. The PM changed 2 of Claude's draft labels: g19: failed_autopay_issue → out_of_scope (he's asking a question not making a statement); g28: considering_stop → out_of_scope (they are asking a question out of scope). Earlier fix found by the first eval run: the output filter blocked the word 'guaranteed' inside the required disclaimer \"returns … aren't guaranteed\", so returns questions fell to the fallback; the filter now blocks only un-negated 'guaranteed' and a test covers it."
 }
