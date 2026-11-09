@@ -37,6 +37,18 @@ def enabled() -> bool:
     return _redis()[0] is not None
 
 
+def count() -> int | None:
+    """Number of stored interactions (no content), for the status check."""
+    url, token = _redis()
+    if not url:
+        return None
+    try:
+        r = requests.post(url, json=["LLEN", KEY], headers={"Authorization": f"Bearer {token}"}, timeout=3)
+        return int(r.json().get("result"))
+    except Exception:
+        return None
+
+
 def record(sid: str | None, text: str | None, chip: str | None, out: dict) -> None:
     try:
         u, a = out.get("understood", {}), out.get("answer", {})
